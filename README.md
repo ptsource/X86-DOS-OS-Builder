@@ -7,7 +7,7 @@ The builder supports customization of the kernel, command interpreter, memory ma
 
 # Purpose Statement
 
-The purpose of the X86 DOS Operating System Builder is to preserve, study, and enhance the Microsoft DOS 4.0 open-source codebase while making it practical and relevant for modern retro-computing, education, and research.
+The purpose of the X86 DOS Operating System Builder is to preserve, study, and enhance the Microsoft DOS open-source codebase while making it practical and relevant for modern retro-computing, education, and research.
 
 This project exists to safeguard an important piece of computing history by maintaining compatibility with the original DOS architecture, behavior, and design principles, while carefully extending it with optional improvements, fixes, and modular components. The builder enables developers, hobbyists, and educators to create customized DOS-based operating systems for x86 hardware, emulators, and virtual machines without compromising historical accuracy.
 
