@@ -12,3 +12,7 @@ The purpose of the X86 DOS Operating System Builder is to preserve, study, and e
 This project exists to safeguard an important piece of computing history by maintaining compatibility with the original DOS architecture, behavior, and design principles, while carefully extending it with optional improvements, fixes, and modular components. The builder enables developers, hobbyists, and educators to create customized DOS-based operating systems for x86 hardware, emulators, and virtual machines without compromising historical accuracy.
 
 By providing clean build tools, documented sources, and configurable components, the X86 DOS Operating System Builder encourages experimentation, learning, and innovation, ensuring that classic DOS technology remains accessible, understandable, and usable for future generations.
+
+## Screenshots
+<img src="https://raw.githubusercontent.com/ptsource/X86-DOS-OS-Builder/master/images/01.PNG" width="33%"><img src="https://raw.githubusercontent.com/ptsource/X86-DOS-OS-Builder/master/images/02.PNG" width="33%"><img src="https://raw.githubusercontent.com/ptsource/X86-DOS-OS-Builder/master/images/03.PNG" width="33%">
+
