@@ -1,4 +1,5 @@
 # X86 DOS Operating System Builder
+#### [![ko-fi](/images/ko-fi.png)](https://ko-fi.com/ptsource) For updates and change logs.
 
 X86-DOS Operating System Builder is a flexible system creation toolkit designed to build custom DOS-compatible operating systems for x86 hardware, based on the Microsoft DOS open-source codebase. It allows developers, educators, and retro-computing enthusiasts to assemble tailored DOS systems by selecting, configuring, and integrating core OS components, device drivers, and utilities.
 
