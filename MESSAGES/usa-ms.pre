@@ -542,7 +542,7 @@ MSBIO    548a 0019
 0020 U 0000 13,10,"Insert diskette for drive "
 0021 U 0000 "A: and press any key when ready",13,10,10,0
 0022 U 0000 13,10,"Bad command or parameters - $"
-0023 U 0002 "WARNING! SHARE should be loaded for large media",13,10,"$"
+0023 U 0002 "SHARE should be loaded for large media",13,10,"$"
 BOOT     58c1 0001
 0001 U 0000 13,10,"Non-System disk or disk error",13,10
 	"Replace and press any key when ready",13,10,0
