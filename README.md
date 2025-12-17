@@ -15,4 +15,5 @@ By providing clean build tools, documented sources, and configurable components,
 
 ## Screenshots
 <img src="https://raw.githubusercontent.com/ptsource/X86-DOS-OS-Builder/master/images/01.PNG" width="33%"><img src="https://raw.githubusercontent.com/ptsource/X86-DOS-OS-Builder/master/images/02.PNG" width="33%"><img src="https://raw.githubusercontent.com/ptsource/X86-DOS-OS-Builder/master/images/03.PNG" width="33%">
+<img src="https://raw.githubusercontent.com/ptsource/X86-DOS-OS-Builder/master/images/04.PNG" width="33%"><img src="https://raw.githubusercontent.com/ptsource/X86-DOS-OS-Builder/master/images/05.PNG" width="33%"><img src="https://raw.githubusercontent.com/ptsource/X86-DOS-OS-Builder/master/images/06.PNG" width="33%">
 
