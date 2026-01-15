@@ -1,0 +1,10 @@
+LINK : warning L4021: no stack segment
+
+ Start  Stop   Length Name                   Class
+ 00000H 027B3H 027B4H INT13CODE              
+
+  Address         Publics by Name
+
+
+  Address         Publics by Value
+
