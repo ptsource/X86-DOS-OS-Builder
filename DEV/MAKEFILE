@@ -19,8 +19,6 @@ all:
 	$(make)
 	cd ..\smartdrv
 	$(make)
-        cd ..\vdisk
-        $(make)
 	cd ..
 
 
