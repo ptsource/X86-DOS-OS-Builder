@@ -1,0 +1,20 @@
+#************************** makefile for cmd\append ***************************
+
+msg	=..\..\messages
+dos	=..\..\dos
+inc	=..\..\inc
+hinc	=..\..\h
+
+#
+#######################	dependencies begin here. #########################
+#
+
+all: append.exe
+
+append.obj: append.asm appendp.inc $(inc)\parse.asm append.ctl
+
+append.exe: append.obj
+        link append;
+        upx --8086 APPEND.EXE
+        del *.obj
+
