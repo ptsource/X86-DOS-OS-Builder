@@ -1,3 +1,8 @@
+;********************************************************
+;*                                                      *
+;*               www.wiki.ptsource.eu                   *
+;*                                                      *
+;********************************************************
 ;**************************************************************************
 ;*	* * * 286 LOADALL information * * *
 ;**************************************************************************
@@ -25,36 +30,7 @@ LODAL286	MACRO
 	DW	050Fh
 ENDM
 
-;*******************************************************************************
-;
-; MoveExtended286
-;	XMM Move Extended Memory Block for the 80286
-;
-;	Copyright (c) 1988, Microsoft Corporation
-;
-; Entry:
-;	ES:BX	Points to a MoveExtendedStruc
-;
-; Return:
-;	AX = 1	Success
-;	AX = 0	Failure
-;		Error Code in BL
-;
-; Registers Destroyed:
-;	Flags, CX, SI, DI, ES
-;
-;			WARNING
-;			=======
-;
-; This routine enables interrupts and can be re-entered
-;
-; Notes:
-;	The case of copying from conventional to conventional memory
-;	is not treated specially in this example.
-;
-; History:
-;	Wed Jul 13 - AWG - Original version
-;-------------------------------------------------------------------------------
+
 ifndef	XM286INCLUDED
 public	MoveExtended286
 endif

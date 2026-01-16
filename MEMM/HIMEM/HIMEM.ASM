@@ -1,62 +1,16 @@
-
+;********************************************************
+;*                                                      *
+;*               www.wiki.ptsource.eu                   *
+;*                                                      *
+;********************************************************
 
 XMSVersion	equ	0200h
 HimemVersion	equ	0206h
 
-; Version -
-;
-;   1.00	- Written					4/17/88
-;   1.01	- Added Global/Temporary Enable of A20		4/18/88
-;   1.02	- Don't use DOS to change interrupts		4/19/88
-;		- Return 1 for success in Disable cases		4/19/88
-;		- Prevent disables if A20 enabled at start	4/19/88
-;		- Added INT 2F handler check			4/19/88
-;		- Used smarter hooking routine			4/19/88
-;   1.03	- Optimized some code				4/20/88
-;		- Temporarily Disable properly			4/20/88
-;		- Disable INT's while changing vars		4/20/88
-;   1.04	- Check to see if A20 works during init		4/23/88
-;		- Fixed PS/2 support				4/23/88
-;   1.05	- Added QueryExtMemory and AllocExtMemory	4/25/88
-;   1.06	- Never remove the INT 15h hook once it is in	4/27/88
-;		- Changed ExtMemory calls to provide "full" MM	4/27/88
-;		- Force A20 line off on PS2's at init time	4/27/88
-;   1.07	- Added Multiple A20 Handler support		5/01/88
-;		- Added popff macro				5/01/88
-;		- REP MOVSW words not bytes			5/04/88
-;   1.08	- Made popff relocateable			5/04/88
-;		- Added support for the AT&T 6300 Plus		5/05/88
-;		- Added support for the HP Vectra		5/06/88
-;   1.09	- Added CEMM recognition code			5/16/88
-;		- Don't automatically trash BX in HMMControl	5/17/88
-;   1.10	- Change PS/2 ID routine to use Watchdog timer	6/02/88
-;		- Changed CEMM recognition string to just VDISK 6/07/88
-;		- Fixed 2 instance bug				6/14/88
-;   1.11	- Changed INT 2F multiplex number to 43h	6/23/88
-;		- Fixed HP Vectra support for older Vectras	6/23/88
-;		- Fixed Block Move register trashing bug	6/25/88
-;   2.00	- Updated to XMS v2.00				7/10/88
-;		- Reworked initialization code			7/12/88
-;		- Reworked reentrancy issues			7/13/88
-;		- Finialized A20 handling			7/14/88
-;		- Added parameter support			7/14/88
-;   2.01	- Official version with Vecta and 6300 support	7/15/88
-;   2.02	- Removed INT 1 from MoveExtMemory		7/19/88
-;		- Fixed minor problems in QueryExtMemory	7/19/88
-;   2.03	- Added 386 Big Mode MoveBlock			8/04/88
-;		- Added Compaq "Built-In" Memory support	8/05/88
-;		- Fixed 64K-free Installation bug		8/05/88
-;		- Change PS/2 detection code yet again		8/08/88
-;   2.04	- Fixed "A20 On" Message bug (ugh)		8/09/88
-;		- Fixed A20 Init testing code			8/09/88
-;		- Cleaned up for publication			8/09/88
-;   2.05	- Bug Fix: Subtract 64K from first EMB for HMA 11/30/88
-;		- Bug Fix: Check for NUMHANDLES=0 case	       12/14/88
-;   2.06	- Source code update				2/07/89
-;		  Bug Fix: Restore 286 initialization code	3/21/89
+
 
 	    name    Himem
-	    title   'HIMEM.SYS - Microsoft XMS Device Driver'
+	    title   'HIMEM.SYS - XMS Device Driver'
 
 ;*--------------------------------------------------------------------------*
 ;*	EQUATES								    *
