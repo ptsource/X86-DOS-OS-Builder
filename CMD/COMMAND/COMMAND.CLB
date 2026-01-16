@@ -1,0 +1,81 @@
+
+; ----------------------------------------------------------
+
+        PUBLIC  $M_CLS_4
+        IF1
+        %out    ... Including message Class B
+        ENDIF
+
+; ----------------------------------------------------------
+
+$M_CLASS_B_STRUC LABEL BYTE
+        $M_CLASS_ID <0FFH,EXPECTED_VERSION,Class_B_MessageCount>
+
+; ----------------------------------------------------------
+
+
+$M_B_001CDH_STRUC LABEL BYTE
+        $M_ID   <001CDH,$M_B_001CDH_MSG-$M_B_001CDH_STRUC>
+
+$M_B_001CFH_STRUC LABEL BYTE
+        $M_ID   <001CFH,$M_B_001CFH_MSG-$M_B_001CFH_STRUC>
+
+$M_B_001D0H_STRUC LABEL BYTE
+        $M_ID   <001D0H,$M_B_001D0H_MSG-$M_B_001D0H_STRUC>
+
+$M_B_001D1H_STRUC LABEL BYTE
+        $M_ID   <001D1H,$M_B_001D1H_MSG-$M_B_001D1H_STRUC>
+
+$M_B_001D2H_STRUC LABEL BYTE
+        $M_ID   <001D2H,$M_B_001D2H_MSG-$M_B_001D2H_STRUC>
+
+; ----------------------------------------------------------
+
+
+$M_B_001CDH_MSG LABEL BYTE
+        DB      $M_B_001CDH_END-$M_B_001CDH_MSG-1
+        DB      "Visit us at www.wiki.ptsource.eu.",CR,LF
+$M_B_001CDH_END LABEL BYTE
+  
+$M_B_001CFH_MSG LABEL BYTE
+        DB      $M_B_001CFH_END-$M_B_001CFH_MSG-1
+        DB      "Out of environment space",CR,LF
+$M_B_001CFH_END LABEL BYTE
+  
+$M_B_001D0H_MSG LABEL BYTE
+        DB      $M_B_001D0H_END-$M_B_001D0H_MSG-1
+        DB      CR,LF,"PTSource DOS Bootstrat Version 1.00X - [2026]",CR,LF
+$M_B_001D0H_END LABEL BYTE
+  
+$M_B_001D1H_MSG LABEL BYTE
+        DB      $M_B_001D1H_END-$M_B_001D1H_MSG-1
+        DB      "Specified COMMAND search directory bad",CR,LF
+$M_B_001D1H_END LABEL BYTE
+  
+$M_B_001D2H_MSG LABEL BYTE
+        DB      $M_B_001D2H_END-$M_B_001D2H_MSG-1
+        DB      "Specified COMMAND search directory bad access denied",CR,LF
+$M_B_001D2H_END LABEL BYTE
+  
+; ----------------------------------------------------------
+
+Class_B_MessageCount EQU     5
+
+; ----------------------------------------------------------
+
+        IF      FARmsg
+$M_CLS_4 PROC FAR
+        ELSE
+$M_CLS_4 PROC NEAR
+        ENDIF
+
+        PUSH    CS
+        POP     ES
+        LEA     DI,$M_CLASS_B_STRUC
+        ADD     CX,$-$M_CLASS_B_STRUC
+        RET
+
+$M_CLS_4 ENDP
+
+; ----------------------------------------------------------
+
