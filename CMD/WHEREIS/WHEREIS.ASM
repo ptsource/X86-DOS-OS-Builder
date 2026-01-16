@@ -2,25 +2,9 @@
 	page  55,131
 ;********************************************************
 ;*                                                      *
-;*      WHEREIS.ASM                     24FEB84         *
+;*               www.wiki.ptsource.eu                   *
 ;*                                                      *
 ;********************************************************
-
-; Modified 10/22/85 by Tom Brengle (BRENGLE%LLL@LLL-MFE)
-;   If no extension is included in the command line filespec,
-;   WHEREIS now acts the same as the DOS DIR command, that is
-;
-;	WHEREIS file
-;
-;   performs the same search as if
-;
-;	WHEREIS file.*
-;
-;   had been entered.  WHEREIS can still look for files
-;   with only null extensions by using
-;
-;	WHEREIS file.
-
 
 whereis segment public
         assume cs:whereis,ds:whereis
