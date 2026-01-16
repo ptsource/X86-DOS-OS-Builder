@@ -12,5 +12,5 @@ The purpose of the  PTSource X86-DOS-OS-Builder is to preserve and study the Mic
 <img src="https://raw.githubusercontent.com/ptsource/X86-DOS-OS-Builder/master/images/04.PNG" width="33%"><img src="https://raw.githubusercontent.com/ptsource/X86-DOS-OS-Builder/master/images/05.PNG" width="33%"><img src="https://raw.githubusercontent.com/ptsource/X86-DOS-OS-Builder/master/images/06.PNG" width="33%">
 
 ### Note
-PTSource X86-DOS-OS-Builder uses the Microsoft DOS open-source codebase wich is based on MS-DOS 4.0, although some fixes to this code has been applied, PTSource X86-DOS-OS-Builder is ment to be used for minimal systems. If you want a full DOS system 100% compatible with MS-DOS, PC-DOS, DR-DOS and with Windows 3.11 enhanced mode support take a look at our [PTSource MiniVMDOS](https://store.ptsource.eu/soft/mvmdos/) 
+PTSource X86-DOS-OS-Builder uses the Microsoft DOS open-source codebase wich is based on MS-DOS 4.0, although some fixes to this code were applied PTSource X86-DOS-OS-Builder is ment to be used for minimal systems. If you want a full DOS system 100% compatible with MS-DOS, PC-DOS, DR-DOS and with Windows 3.11 enhanced mode support take a look at our [PTSource MiniVMDOS](https://store.ptsource.eu/soft/mvmdos/) 
 
