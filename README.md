@@ -1,6 +1,6 @@
 # Purpose Statement
 
-The purpose of the X86 DOS Operating System Builder is to preserve, study, and enhance the Microsoft DOS open-source codebase while making it practical and relevant for modern retro-computing, education, and research. This project exists to safeguard an important piece of computing history by maintaining compatibility with the original DOS architecture, behavior, and design principles, while carefully extending it with optional improvements, fixes, and modular components. The builder enables developers, hobbyists, and educators to create customized DOS-based operating systems for x86 hardware, emulators, and virtual machines without compromising historical accuracy.
+The purpose of the X86 DOS Operating System Builder is to preserve and study the Microsoft DOS open-source codebase while making it practical and relevant for modern retro-computing, education or research. This project exists to safeguard an important piece of computing history by maintaining compatibility with the original DOS architecture, behavior, and design principles, while carefully and occasionally extending it with optional improvements, fixes or components. 
 
 # X86 DOS Operating System Builder
 #### [![ko-fi](/images/ko-fi.png)](https://ko-fi.com/ptsource) For updates and change logs.
