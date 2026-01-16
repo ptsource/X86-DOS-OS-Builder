@@ -1,0 +1,163 @@
+
+; ----------------------------------------------------------
+
+        PUBLIC  $M_CLS_3
+        IF1
+        %out    ... Including message Class C
+        ENDIF
+
+; ----------------------------------------------------------
+
+$M_CLASS_C_STRUC LABEL BYTE
+        $M_CLASS_ID <0FFH,EXPECTED_VERSION,Class_C_MessageCount>
+
+; ----------------------------------------------------------
+
+
+$M_C_00029H_STRUC LABEL BYTE
+        $M_ID   <00029H,$M_C_00029H_MSG-$M_C_00029H_STRUC>
+
+$M_C_0002AH_STRUC LABEL BYTE
+        $M_ID   <0002AH,$M_C_0002AH_MSG-$M_C_0002AH_STRUC>
+
+$M_C_0002BH_STRUC LABEL BYTE
+        $M_ID   <0002BH,$M_C_0002BH_MSG-$M_C_0002BH_STRUC>
+
+$M_C_0002CH_STRUC LABEL BYTE
+        $M_ID   <0002CH,$M_C_0002CH_MSG-$M_C_0002CH_STRUC>
+
+$M_C_0002DH_STRUC LABEL BYTE
+        $M_ID   <0002DH,$M_C_0002DH_MSG-$M_C_0002DH_STRUC>
+
+$M_C_0002EH_STRUC LABEL BYTE
+        $M_ID   <0002EH,$M_C_0002EH_MSG-$M_C_0002EH_STRUC>
+
+$M_C_0002FH_STRUC LABEL BYTE
+        $M_ID   <0002FH,$M_C_0002FH_MSG-$M_C_0002FH_STRUC>
+
+$M_C_00030H_STRUC LABEL BYTE
+        $M_ID   <00030H,$M_C_00030H_MSG-$M_C_00030H_STRUC>
+
+$M_C_00031H_STRUC LABEL BYTE
+        $M_ID   <00031H,$M_C_00031H_MSG-$M_C_00031H_STRUC>
+
+$M_C_00032H_STRUC LABEL BYTE
+        $M_ID   <00032H,$M_C_00032H_MSG-$M_C_00032H_STRUC>
+
+$M_C_00033H_STRUC LABEL BYTE
+        $M_ID   <00033H,$M_C_00033H_MSG-$M_C_00033H_STRUC>
+
+$M_C_00034H_STRUC LABEL BYTE
+        $M_ID   <00034H,$M_C_00034H_MSG-$M_C_00034H_STRUC>
+
+$M_C_00035H_STRUC LABEL BYTE
+        $M_ID   <00035H,$M_C_00035H_MSG-$M_C_00035H_STRUC>
+
+$M_C_00036H_STRUC LABEL BYTE
+        $M_ID   <00036H,$M_C_00036H_MSG-$M_C_00036H_STRUC>
+
+$M_C_00037H_STRUC LABEL BYTE
+        $M_ID   <00037H,$M_C_00037H_MSG-$M_C_00037H_STRUC>
+
+; ----------------------------------------------------------
+
+
+$M_C_00029H_MSG LABEL BYTE
+        DB      $M_C_00029H_END-$M_C_00029H_MSG-1
+        DB      CR,"Parameters not supported by drive",CR,LF
+$M_C_00029H_END LABEL BYTE
+  
+$M_C_0002AH_MSG LABEL BYTE
+        DB      $M_C_0002AH_END-$M_C_0002AH_MSG-1
+        DB      CR,LF
+$M_C_0002AH_END LABEL BYTE
+  
+$M_C_0002BH_MSG LABEL BYTE
+        DB      $M_C_0002BH_END-$M_C_0002BH_MSG-1
+        DB      CR,LF,LF
+$M_C_0002BH_END LABEL BYTE
+  
+$M_C_0002CH_MSG LABEL BYTE
+        DB      $M_C_0002CH_END-$M_C_0002CH_MSG-1
+        DB      CR,"Insert DOS disk in drive %1:",CR,LF
+$M_C_0002CH_END LABEL BYTE
+  
+$M_C_0002DH_MSG LABEL BYTE
+        DB      $M_C_0002DH_END-$M_C_0002DH_MSG-1
+        DB      CR,LF,"WARNING, ALL DATA ON NON-REMOVABLE DISK",CR,LF
+        DB      	"DRIVE %1: WILL BE LOST!",CR,LF
+        DB      	"Proceed with Format (Y/N)?"
+$M_C_0002DH_END LABEL BYTE
+  
+$M_C_0002EH_MSG LABEL BYTE
+        DB      $M_C_0002EH_END-$M_C_0002EH_MSG-1
+        DB      CR,"Format another (Y/N)?"
+$M_C_0002EH_END LABEL BYTE
+  
+$M_C_0002FH_MSG LABEL BYTE
+        DB      $M_C_0002FH_END-$M_C_0002FH_MSG-1
+        DB      CR,"Error reading partition table",CR,LF
+$M_C_0002FH_END LABEL BYTE
+  
+$M_C_00030H_MSG LABEL BYTE
+        DB      $M_C_00030H_END-$M_C_00030H_MSG-1
+        DB      CR,"Error writing partition table",CR,LF
+$M_C_00030H_END LABEL BYTE
+  
+$M_C_00031H_MSG LABEL BYTE
+        DB      $M_C_00031H_END-$M_C_00031H_MSG-1
+        DB      CR,"Parameters not compatible", CR,LF
+$M_C_00031H_END LABEL BYTE
+  
+$M_C_00032H_MSG LABEL BYTE
+        DB      $M_C_00032H_END-$M_C_00032H_MSG-1
+        DB      "%1 allocation units available on disk",CR,LF
+$M_C_00032H_END LABEL BYTE
+  
+$M_C_00033H_MSG LABEL BYTE
+        DB      $M_C_00033H_END-$M_C_00033H_MSG-1
+        DB      "%1 bytes in each allocation unit",CR,LF
+$M_C_00033H_END LABEL BYTE
+  
+$M_C_00034H_MSG LABEL BYTE
+        DB      $M_C_00034H_END-$M_C_00034H_MSG-1
+        DB      CR, "Error writing partition table",CR,LF
+$M_C_00034H_END LABEL BYTE
+  
+$M_C_00035H_MSG LABEL BYTE
+        DB      $M_C_00035H_END-$M_C_00035H_MSG-1
+        DB      CR,"Same parameter entered twice",CR,LF
+$M_C_00035H_END LABEL BYTE
+  
+$M_C_00036H_MSG LABEL BYTE
+        DB      $M_C_00036H_END-$M_C_00036H_MSG-1
+        DB      CR,"Must enter both /T and /N parameters",CR,LF
+$M_C_00036H_END LABEL BYTE
+  
+$M_C_00037H_MSG LABEL BYTE
+        DB      $M_C_00037H_END-$M_C_00037H_MSG-1
+        DB      CR,"Attempting to recover allocation unit %1                          ",CR
+$M_C_00037H_END LABEL BYTE
+  
+; ----------------------------------------------------------
+
+Class_C_MessageCount EQU     15
+
+; ----------------------------------------------------------
+
+        IF      FARmsg
+$M_CLS_3 PROC FAR
+        ELSE
+$M_CLS_3 PROC NEAR
+        ENDIF
+
+        PUSH    CS
+        POP     ES
+        LEA     DI,$M_CLASS_C_STRUC
+        ADD     CX,$-$M_CLASS_C_STRUC
+        RET
+
+$M_CLS_3 ENDP
+
+; ----------------------------------------------------------
+
