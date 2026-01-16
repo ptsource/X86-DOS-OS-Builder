@@ -1,0 +1,22 @@
+#************************** makefile for cmd\... ***************************
+
+msg	=..\..\messages
+dos	=..\..\dos
+inc	=..\..\inc
+hinc	=..\..\h
+
+#
+#######################	dependencies begin here. #########################
+#
+
+all: whereis.com
+
+
+whereis.obj: whereis.asm
+          masm whereis;
+
+whereis.com: whereis.obj
+	link whereis;
+	exe2bin whereis.exe WHEREIS.COM
+	del whereis.exe
+	del *.obj
