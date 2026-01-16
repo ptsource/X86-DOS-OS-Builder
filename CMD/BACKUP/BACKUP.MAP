@@ -1,0 +1,45 @@
+
+ Start  Stop   Length Name                   Class
+ 00000H 074DBH 074DCH _TEXT                  CODE
+ 074DCH 074DCH 00000H C_ETEXT                ENDCODE
+ 074DCH 07653H 00178H FINDSEGMENT            FIND
+ 07654H 08213H 00BC0H DOSXXX                 DOS
+ 08214H 082BBH 000A8H BUFFER                 BUFFER
+ 082BCH 08383H 000C8H FILEATTRIBUTESEGMENT   FAT
+ 08390H 0839FH 00010H DATABUFF               DATABUFF
+ 083A0H 083E1H 00042H NULL                   BEGDATA
+ 083E2H 08C63H 00882H _DATA                  DATA
+ 08C64H 08C71H 0000EH CDATA                  DATA
+ 08C72H 08C72H 00000H XIFB                   DATA
+ 08C72H 08C72H 00000H XIF                    DATA
+ 08C72H 08C72H 00000H XIFE                   DATA
+ 08C72H 08C72H 00000H XIB                    DATA
+ 08C72H 08C72H 00000H XI                     DATA
+ 08C72H 08C72H 00000H XIE                    DATA
+ 08C72H 08C72H 00000H XPB                    DATA
+ 08C72H 08C73H 00002H XP                     DATA
+ 08C74H 08C74H 00000H XPE                    DATA
+ 08C74H 08C74H 00000H XCB                    DATA
+ 08C74H 08C74H 00000H XC                     DATA
+ 08C74H 08C74H 00000H XCE                    DATA
+ 08C74H 08C74H 00000H XCFB                   DATA
+ 08C74H 08C74H 00000H XCF                    DATA
+ 08C74H 08C74H 00000H XCFE                   DATA
+ 08C74H 08C75H 00002H EXEC                   DATA
+ 08C76H 08C76H 00000H CONST                  CONST
+ 08C76H 08C7DH 00008H HDR                    MSG
+ 08C7EH 08D4BH 000CEH MSG                    MSG
+ 08D4CH 08D4DH 00002H PAD                    MSG
+ 08D4EH 08D4EH 00001H EPAD                   MSG
+ 08D50H 08D75H 00026H _BSS                   BSS
+ 08D76H 08D76H 00000H XOB                    BSS
+ 08D76H 08D76H 00000H XO                     BSS
+ 08D76H 08D76H 00000H XOE                    BSS
+ 08D80H 098D1H 00B52H c_common               BSS
+ 098E0H 0A0DFH 00800H STACK                  STACK
+
+ Origin   Group
+ 083A:0   DGROUP
+ 0000:0   PGROUP
+
+Program entry point at 0000:571A
