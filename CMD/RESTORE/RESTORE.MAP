@@ -1,0 +1,45 @@
+Stack Allocation = 50000 bytes
+
+ Start  Stop   Length Name                   Class
+ 00000H 07897H 07898H _TEXT                  CODE
+ 07898H 07898H 00000H C_ETEXT                ENDCODE
+ 07898H 07A0FH 00178H FINDSEGMENT            FIND
+ 07A10H 08485H 00A76H DOSXXX                 DOS
+ 08486H 0854DH 000C8H FILEATTRIBUTESEGMENT   FAT
+ 0854EH 085F3H 000A6H BUFFER                 BUFFER
+ 08600H 08600H 00000H DATABUFF               DATABUFF
+ 08600H 08641H 00042H NULL                   BEGDATA
+ 08642H 08CA7H 00666H _DATA                  DATA
+ 08CA8H 08CB5H 0000EH CDATA                  DATA
+ 08CB6H 08CB6H 00000H XIFB                   DATA
+ 08CB6H 08CB6H 00000H XIF                    DATA
+ 08CB6H 08CB6H 00000H XIFE                   DATA
+ 08CB6H 08CB6H 00000H XIB                    DATA
+ 08CB6H 08CB6H 00000H XI                     DATA
+ 08CB6H 08CB6H 00000H XIE                    DATA
+ 08CB6H 08CB6H 00000H XPB                    DATA
+ 08CB6H 08CB7H 00002H XP                     DATA
+ 08CB8H 08CB8H 00000H XPE                    DATA
+ 08CB8H 08CB8H 00000H XCB                    DATA
+ 08CB8H 08CB8H 00000H XC                     DATA
+ 08CB8H 08CB8H 00000H XCE                    DATA
+ 08CB8H 08CB8H 00000H XCFB                   DATA
+ 08CB8H 08CB8H 00000H XCF                    DATA
+ 08CB8H 08CB8H 00000H XCFE                   DATA
+ 08CB8H 08CB8H 00000H CONST                  CONST
+ 08CB8H 08CBFH 00008H HDR                    MSG
+ 08CC0H 08D8DH 000CEH MSG                    MSG
+ 08D8EH 08D8FH 00002H PAD                    MSG
+ 08D90H 08D90H 00001H EPAD                   MSG
+ 08D92H 08DB7H 00026H _BSS                   BSS
+ 08DB8H 08DB8H 00000H XOB                    BSS
+ 08DB8H 08DB8H 00000H XO                     BSS
+ 08DB8H 08DB8H 00000H XOE                    BSS
+ 08DC0H 0A76DH 019AEH c_common               BSS
+ 0A770H 16ABFH 0C350H STACK                  STACK
+
+ Origin   Group
+ 0860:0   DGROUP
+ 0000:0   PGROUP
+
+Program entry point at 0000:5ECA
