@@ -1,9 +1,8 @@
-;------------------------------------------------------------------------;
-;  ANSI.COM - Replacement for the ANSI.SYS console device driver.        ;
-;  Unlike ANSI.SYS which must be installed at boot time, ANSI.COM        ;
-;  can be installed and uninstalled at anytime.  Enhancements include    ;
-;  a fast screen write and variable sized keyboard reassignment buffer.  ;
-;------------------------------------------------------------------------;
+;********************************************************
+;*                                                      *
+;*               www.wiki.ptsource.eu                   *
+;*                                                      *
+;********************************************************
 _TEXT          SEGMENT PUBLIC 'CODE'
                ASSUME  CS:_TEXT,DS:_TEXT,ES:_TEXT,SS:_TEXT
                ORG     100H
