@@ -65,6 +65,8 @@ all:
 	$(make)
 	cd ..\env
 	$(make)
+	cd ..\reboot
+	$(make)
 	cd ..\restore
 	$(make)
 	cd ..\tree
