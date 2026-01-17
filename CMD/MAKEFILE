@@ -63,6 +63,8 @@ all:
 	$(make)
 	cd ..\edit
 	$(make)
+	cd ..\env
+	$(make)
 	cd ..\restore
 	$(make)
 	cd ..\tree
