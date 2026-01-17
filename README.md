@@ -33,4 +33,6 @@ A Boot Image is provided in the repository BOOT.IMG, this image contains the com
 * Open the image with a RAW image mounter.(DO NOT USE WINIMAGE, IT WILL BREAK THE BOOT RECORD). There are many RAW image mounters avaliable, there is also one from [PTSource here](https://ko-fi.com/s/0d421f99c0)
 * Edit the image to suite your needs and unmount the image
 
+## Applications
+
 
