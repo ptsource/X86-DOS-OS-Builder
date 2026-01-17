@@ -21,4 +21,7 @@ PTSource X86-DOS-OS-Builder builds in any DOS environment, even in DOSBox. A DOS
 ## Instructions
 
 * Download this repository
+* Extract the contents of the repository and move it maintaining the directory structure inside the DOSBox folder (C:\DOSSTRAP)
+* Verify that the CONFIG.BAT points to (C:\DOSSTRAP)
+* Run BUILD
 
