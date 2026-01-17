@@ -1,0 +1,34 @@
+#************************* Root level Makefile *************************
+
+make	=nmake
+
+all:
+	cd inc
+	del *.obj
+	$(make)
+        cd ..\messages
+	$(make)
+	cd ..\mapper
+	del *.obj
+	$(make)
+	del *.obj
+	cd ..\boot
+	del *.obj
+	$(make)
+	cd ..\bios
+	del *.obj
+	$(make)
+	del *.obj
+	cd ..\dos
+	del *.obj
+	$(make)
+	cd ..\cmd
+	$(make)
+        cd ..\memm
+        $(make)
+	cd ..\dev
+	$(make)
+	cd ..
+
+
+
