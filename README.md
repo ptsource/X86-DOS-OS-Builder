@@ -26,3 +26,10 @@ PTSource X86-DOS-OS-Builder builds in any DOS environment, even in DOSBox. A DOS
 * Run BUILD and wait
 * A complete distribution will be avaliable in the DISTRO folder
 
+## Boot Image Editing
+
+A Boot Image is provided in the repository BOOT.IMG, this image contains the complete distribution in the distro folder and it can be edited to suite your needs. Here is how to do it.
+
+* Open the image with a RAW image mounter.(DO NOT USE WINIMAGE, IT WILL BREAK THE BOOT RECORD). There are many RAW image mounters avaliable, there is also one for [PTSource here](https://ko-fi.com/s/0d421f99c0). 
+
+
