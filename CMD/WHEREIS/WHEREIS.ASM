@@ -1,10 +1,10 @@
-	title WHEREIS
-	page  55,131
 ;********************************************************
 ;*                                                      *
 ;*               www.wiki.ptsource.eu                   *
 ;*                                                      *
 ;********************************************************
+	title WHEREIS
+	page  55,131
 
 whereis segment public
         assume cs:whereis,ds:whereis
