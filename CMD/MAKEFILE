@@ -61,6 +61,8 @@ all:
 	$(make)
 	cd ..\mode
 	$(make)
+	cd ..\edit
+	$(make)
 	cd ..\restore
 	$(make)
 	cd ..\tree
