@@ -16,7 +16,7 @@ PTSource X86-DOS-OS-Builder uses the Microsoft DOS open-source codebase wich is 
 
 ## Building
 
-PTSource X86-DOS-OS-Builder builds in any DOS environment, even in DOSBox (a DOSBox portable distribution is provided for that effect).
+PTSource X86-DOS-OS-Builder builds in any DOS environment, even in DOSBox. A DOSBox portable distribution is provided for that effect.
 
 ## Instructions
 
