@@ -901,20 +901,14 @@ REASSIGNMENT_BUFFER   =       DEVICE_STATUS_BUFFER + DEVICE_STATUS_SIZE
 ;              ---------------
 
 SYNTAX         LABEL   BYTE
-DB      "Usage:  ANSI [FAST | SLOW][ON | OFF][/B nnn][/C][/U]",CR,LF
-DB      "FAST = direct screen writes; default",CR,LF
-DB      "SLOW = screen writes via BIOS",CR,LF
-DB      "ON/OFF = active/inactive; default is ON",CR,LF
-DB      "nnn = buffer size bytes (0-60K) reserved for reassignment; "
-DB      "default 200",CR,LF
-DB      "/U = Uninstall"
+DB      "Usage: ANSI [FAST | SLOW][ON | OFF][/B nnn][/C][/U]"
 CR_LF   DB     CR,LF,"$"
 
 STATUS_MSG     DB      "Status: $"
 BUFFER_MSG     DB      CR,LF,"Buffer size: $"
 BYTES_FREE     DB      CR,LF,"Bytes free:  $"
 ANSI_SYS_MSG   DB      "ANSI.SYS is installed so "
-NOT_INSTALLED  DB      "ANSI.COM not installed",CR,LF,"$"
+NOT_INSTALLED  DB      "ANSI.COM was not installed",CR,LF,"$"
 CON            DB      "CON"
 CON_OFFSET     EQU     10
 
