@@ -1,5 +1,0 @@
-LINK : warning L4021: no stack segment
-
- Start  Stop   Length Name                   Class
- 00000H 01DF9H 01DFAH RAMCODE                
- 01E00H 01FE2H 001E3H RAMCODE                
