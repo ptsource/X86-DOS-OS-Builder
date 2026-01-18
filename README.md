@@ -20,19 +20,21 @@ PTSource X86-DOS-OS-Builder builds in any DOS environment, even in DOSBox. A DOS
 
 ## Instructions
 
-* Download this repository
-* Extract the contents of the repository and move it maintaining the directory structure inside the DOSBox folder C:\DOSSTRAP
-* Verify that the CONFIG.BAT points to C:\DOSSTRAP
-* Run BUILD and wait
-* A complete distribution will be avaliable in the DISTRO folder
+* Download this repository.
+* Extract the contents of the repository and move it maintaining the directory structure inside the DOSBox folder C:\DOSSTRAP.
+* Verify that the CONFIG.BAT points to C:\DOSSTRAP.
+* Run BUILD and wait.
+* A complete distribution will be avaliable in the DISTRO folder.
 
 ## Boot Image Editing
 
 A Boot Image is provided in the repository BOOT.IMG, this image contains the complete distribution in the distro folder and it can be edited to suite your needs. Here is how to do it.
 
-* Open the image with a RAW image mounter.(DO NOT USE WINIMAGE, IT WILL BREAK THE BOOT RECORD). There are many RAW image mounters avaliable, there is also one from [PTSource here](https://ko-fi.com/s/0d421f99c0)
-* Edit the image to suite your needs and unmount the image
+* Open the image with a RAW image mounter.(DO NOT USE WINIMAGE, IT WILL BREAK THE BOOT RECORD). There are many RAW image mounters avaliable, there is also one from [PTSource here](https://ko-fi.com/s/0d421f99c0).
+* Edit the image to suite your needs and unmount the image.
 
 ## Applications
+
+PTSource X86-DOS-OS-Builder uses the Microsoft DOS open-source codebase wich is based on MS-DOS 4.0 despite that almost all not to complex DOS applications will run you no hassle, its up to you to make a test and see. Applications can be added to the image using the above method. If you want a Norton Commander style shell (the one used on the preview) you can get [Wee Commander here](https://ko-fi.com/s/8df79a705d).
 
 
