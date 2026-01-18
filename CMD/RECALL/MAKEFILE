@@ -1,0 +1,22 @@
+#************************** makefile for cmd\... ***************************
+
+msg	=..\..\messages
+dos	=..\..\dos
+inc	=..\..\inc
+hinc	=..\..\h
+
+#
+#######################	dependencies begin here. #########################
+#
+
+all: recall.com
+
+
+recall.obj: recall.asm
+          tasm recall;
+
+recall.com: recall.obj
+	tlink /t recall;
+	upx --8086 RECALL.COM
+	del *.obj
+	del *.map
