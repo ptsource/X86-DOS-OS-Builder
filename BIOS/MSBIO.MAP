@@ -2,7 +2,7 @@ LINK : warning L4021: no stack segment
 
  Start  Stop   Length Name                   Class
  00000H 03E7FH 03E80H CODE                   CODE
- 03E80H 07D33H 03EB4H SYSINITSEG             SYSTEM_INIT
+ 03E80H 07D05H 03E86H SYSINITSEG             SYSTEM_INIT
 
   Address         Publics by Name
 
@@ -404,7 +404,7 @@ LINK : warning L4021: no stack segment
  03E8:07F2       SYSINIT
  03E8:149F       Sysinit_Base
  03E8:0801       SYSI_COUNTRY
- 03E8:3EB4       SYSSIZE
+ 03E8:3E86       SYSSIZE
  0000:001E       TABLE_PATCH
  03E8:0EB2       TEMPCDS
  0000:0A89       Temp_H
@@ -860,4 +860,4 @@ LINK : warning L4021: no stack segment
  03E8:3E42       BadOrder
  03E8:3E68       Errorcmd
  03E8:3E82       ShareWarnMsg
- 03E8:3EB4       SYSSIZE
+ 03E8:3E86       SYSSIZE

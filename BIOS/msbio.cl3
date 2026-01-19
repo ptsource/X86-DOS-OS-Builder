@@ -1,4 +1,4 @@
-; msbio.cl3 
+; msbio.cl3
 
 
 ;_______________________
@@ -59,4 +59,4 @@ ERRORCMD DB    "Error in CONFIG.SYS line ","$"
 
 ;_______________________
 
-SHAREWARNMSG DB    "WARNING! SHARE should be loaded for large media",13,10,"$"
+SHAREWARNMSG DB    " ",13,10,"$"
