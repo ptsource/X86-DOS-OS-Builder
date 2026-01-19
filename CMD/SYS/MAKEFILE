@@ -13,7 +13,7 @@ here	=..\cmd\sys
 
 all: sys.com
 
-$(inc)\boot.inc: $(boot)\msboot.asm $(msg)\usa-ms.msg
+$(inc)\boot.inc: $(boot)\msboot.asm
         cd $(boot)
         nmake
         cd $(here)
