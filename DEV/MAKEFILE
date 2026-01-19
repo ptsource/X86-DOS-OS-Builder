@@ -9,6 +9,10 @@ all:
 	$(make)
 	cd ..\display
 	$(make)
+	cd ..\smartdrv
+	$(make)
+	cd ..\driver
+	$(make)
 	cd ..
 
 
