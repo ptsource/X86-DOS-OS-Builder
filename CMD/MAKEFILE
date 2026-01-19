@@ -11,6 +11,8 @@ all:
 	$(make)
 	cd ..\ansi
 	$(make)
+	cd ..\alias
+	$(make)
 	cd ..\chkdsk
 	$(make)
 	cd ..\debug
