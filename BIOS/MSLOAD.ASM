@@ -43,7 +43,7 @@ org	0h
 start:
 	jmp Save_Input_Values
 SYS_Version	dw	EXPECTED_VERSION ;AN001; From VERSIONA.INC file
-Mystacks	dw	64 dup (0)	;AN000; local stack
+Mystacks	dw	128 dup (0)	;AN000; local stack
 MyStack_ptr	label	word
 
 ;local data
