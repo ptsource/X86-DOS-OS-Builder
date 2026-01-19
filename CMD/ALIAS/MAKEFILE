@@ -1,0 +1,22 @@
+#************************** makefile for cmd\... ***************************
+
+msg	=..\..\messages
+dos	=..\..\dos
+inc	=..\..\inc
+hinc	=..\..\h
+
+#
+#######################	dependencies begin here. #########################
+#
+
+all: alias.com
+
+
+alias.obj: alias.asm
+          tasm alias;
+
+alias.com: alias.obj
+	tlink /t alias;
+	upx --8086 ALIAS.COM
+	del *.obj
+	del *.map
