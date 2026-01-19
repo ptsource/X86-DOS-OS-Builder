@@ -38,6 +38,10 @@ A Boot Image is provided in the repository BOOT.IMG, this image contains the com
 
 PTSource X86-DOS-OS-Builder uses the Microsoft DOS open-source codebase wich is based on MS-DOS 4.0 despite that almost all not too complex DOS applications will run with no hassle, its up to you to make a test and see. Applications can be added to the image using the above method. If you want a Norton Commander style shell (the one used on the preview) you can get [Wee Commander here](https://ko-fi.com/s/8df79a705d).
 
+## MiniVM Booting
+
+If you are a [PTSource MiniVM](https://wiki.ptsource.eu/soft/ptminivm/start) user you need to set the floppies to 1.44 to boot. You can do this by adding --f140 to the command line and then enter the BIOS and change the drives to 1.44.
+
 ## Support
 
 [![Visit homepage.](/images/homepage-here-yellowgreen.svg)](https://wiki.ptsource.eu/)
