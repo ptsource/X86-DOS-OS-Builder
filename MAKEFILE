@@ -6,8 +6,6 @@ all:
 	cd inc
 	del *.obj
 	$(make)
-        cd ..\messages
-	$(make)
 	cd ..\mapper
 	del *.obj
 	$(make)
