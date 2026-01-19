@@ -11,8 +11,6 @@ all:
 	$(make)
 	cd ..\driver
 	$(make)
-	cd ..\smartdrv
-	$(make)
 	cd ..
 
 
