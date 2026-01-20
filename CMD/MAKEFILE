@@ -17,6 +17,8 @@ all:
 	$(make)
 	cd ..\debug
 	$(make)
+	cd ..\deldupe
+	$(make)
 	cd ..\edlin
 	$(make)
 	cd ..\exe2bin
