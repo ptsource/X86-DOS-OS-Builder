@@ -13,6 +13,10 @@ all:
 	$(make)
 	cd ..\alias
 	$(make)
+	cd ..\ask
+	$(make)
+	cd ..\bat2exec
+	$(make)
 	cd ..\chkdsk
 	$(make)
 	cd ..\debug
