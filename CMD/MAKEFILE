@@ -27,6 +27,8 @@ all:
 	$(make)
 	cd ..\fc
 	$(make)
+	cd ..\fileof
+	$(make)
 	cd ..\format
 	$(make)
 	cd ..\join
