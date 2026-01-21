@@ -44,6 +44,7 @@ If you are a [PTSource MiniVM](https://wiki.ptsource.eu/soft/ptminivm/start) use
 
 ## Use case examples
 ### Making a CP/M-80 System using ZRUN
+<img src="https://raw.githubusercontent.com/ptsource/X86-DOS-OS-Builder/master/images/Z1.PNG" width="33%"><img src="https://raw.githubusercontent.com/ptsource/X86-DOS-OS-Builder/master/images/Z2.PNG" width="33%"><img src="https://raw.githubusercontent.com/ptsource/X86-DOS-OS-Builder/master/images/Z3.PNG" width="33%">
 
 ## Support
 
