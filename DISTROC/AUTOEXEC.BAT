@@ -14,6 +14,6 @@ CLS
 FILEOF COLOR.COM 
 IF ERRORLEVEL 4 COLOR 10,0
 FILEOF ZRUN.COM
-IF NOT ERRORLEVEL 4 ECHO ZRUN Was not found. Get it a www.wiki.ptsource.eu.
+IF NOT ERRORLEVEL 4 ECHO ZRUN Was not found. Get it at www.wiki.ptsource.eu.
 
 
