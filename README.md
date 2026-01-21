@@ -47,7 +47,7 @@ If you are a [PTSource MiniVM](https://wiki.ptsource.eu/soft/ptminivm/start) use
 <img src="https://raw.githubusercontent.com/ptsource/X86-DOS-OS-Builder/master/images/Z1.PNG" width="33%"><img src="https://raw.githubusercontent.com/ptsource/X86-DOS-OS-Builder/master/images/Z2.PNG" width="33%"><img src="https://raw.githubusercontent.com/ptsource/X86-DOS-OS-Builder/master/images/Z3.PNG" width="33%">
 This use case allows you to have a CP/M-80 System using only ALIAS, [ZRUN](https://ko-fi.com/s/14d98aea8d) and [COLOR](https://ko-fi.com/s/edfcdbe2af). The example is in the ZRUNCPM.IMG and it builds under the folder DISTROC.
 
-## Support
+## Homepage
 
 [![Visit homepage.](/images/homepage-here-yellowgreen.svg)](https://wiki.ptsource.eu/)
 
