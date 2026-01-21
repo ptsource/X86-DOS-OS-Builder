@@ -55,7 +55,7 @@ This use case allows you to have a CP/M-80 System using only ALIAS, [ZRUN](https
 *  Add ZRUN and COLOR to the ZRUNCPM.IMG.
 *  Add the CPM programs you like changing the extension from .COM to .CPM.
 *  Edit AUTOEXEC.BAT and use ALIAS to prepare your commands.
-*  Close the image and boot and issue your ALIAS defined commands.
+*  Close the image, boot and issue your ALIAS defined commands.
 
 ## Homepage
 
