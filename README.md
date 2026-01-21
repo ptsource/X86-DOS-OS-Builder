@@ -42,6 +42,9 @@ PTSource X86-DOS-OS-Builder uses the Microsoft DOS open-source codebase wich is 
 
 If you are a [PTSource MiniVM](https://wiki.ptsource.eu/soft/ptminivm/start) user you need to set the floppies to 1.44 to boot. You can do this by adding --f140 to the command line and then enter the BIOS and change the drives to 1.44.
 
+## Use case examples
+### Making a CP/M-80 System using ZRUN
+
 ## Support
 
 [![Visit homepage.](/images/homepage-here-yellowgreen.svg)](https://wiki.ptsource.eu/)
