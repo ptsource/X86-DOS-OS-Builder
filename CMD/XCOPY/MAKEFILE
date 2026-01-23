@@ -1,0 +1,16 @@
+#************************** makefile for cmd\... ***************************
+
+msg	=..\..\messages
+dos	=..\..\dos
+inc	=..\..\inc
+hinc	=..\..\h
+
+#
+#######################	dependencies begin here. #########################
+#
+
+all: xcopy.com
+
+xcopy.com: xcopy.asm
+	nasm -o XCOPY.COM -O3 xcopy.asm
+	upx --8086 XCOPY.COM
