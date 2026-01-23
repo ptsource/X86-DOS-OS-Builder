@@ -84,6 +84,7 @@ all:
 	cd ..\tree
 	$(make)
 	cd ..\fdisk
+	del *.exe
 	$(make)
 	cd ..\replace
 	$(make)
@@ -98,6 +99,9 @@ all:
 	cd ..\graphics
 	$(make)
 	cd ..\keyb
+	$(make)
+	cd ..\xcopy
+	del *.com
 	$(make)
 	cd ..
 
