@@ -16,7 +16,6 @@ command_tail	db	?			;Offset of the command tail.
 		org	100h
 
 main:		jmp	initialize
-program 	db	"BAT2EXEC","$",1Ah
 ;----------------------------------------------------------------------------
 ;Equates used to find data offsets in the compiled program.
 ;----------------------------------------------------------------------------
@@ -164,7 +163,7 @@ outfile_name	db	13 dup (" ")		;Name of output file.
 filemsg1	db	13,10,"Error in line $" ;File identification message.
 
 errmsg0 	db	"Need DOS 2.0 or greater$"
-errmsg1 	db	13,10,"Usage: BAT2EXEC filename.ext",13,10,"$"
+errmsg1 	db	"Usage: BAT2EXEC filename.ext$"
 errmsg2 	db	"Can",39,"t find input file$"
 errmsg3 	db	"Not enough memory$"
 errmsg4 	db	"No input file specified$"
@@ -185,9 +184,6 @@ endmsg		db	13,10,"$"
 ;----------------------------------------------------------------------------
 initialize	proc	near
 		assume	cs:code,ds:code,es:code
-		mov	dx,offset program	;Display message.
-		mov	ah,9
-		int	21h
 		cld				;Set string operations 'up.'
 		mov	ah,30h			;Get DOS version, run only
 		int	21h			;  if 2.0 or greater.
