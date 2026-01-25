@@ -1,0 +1,20 @@
+#************************** makefile for cmd\... ***************************
+
+dos	=..\..\dos
+inc	=..\..\inc
+hinc	=..\..\h
+
+#
+#######################	dependencies begin here. #########################
+#
+
+all: ask.com
+
+
+ask.obj: ask.asm
+          tasm ask;
+
+ask.com: ask.obj
+	tlink /t ask;
+	del *.obj
+	del *.map
