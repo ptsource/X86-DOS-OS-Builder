@@ -1,0 +1,23 @@
+#************************** makefile for cmd\... ***************************
+
+msg	=..\..\messages
+dos	=..\..\dos
+inc	=..\..\inc
+hinc	=..\..\h
+
+#
+#######################	dependencies begin here. #########################
+#
+
+all: edit.com
+
+
+edit.obj: edit.asm
+          masm edit;
+
+edit.com: edit.obj
+	link edit;
+	exe2bin edit.exe EDIT.COM
+	upx --8086 EDIT.COM
+	del edit.exe
+	del *.obj

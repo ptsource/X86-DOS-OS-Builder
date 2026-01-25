@@ -1,0 +1,17 @@
+#************************** makefile for cmd\... ***************************
+
+dos	=..\..\dos
+inc	=..\..\inc
+hinc	=..\..\h
+
+#
+#######################	dependencies begin here. #########################
+#
+
+all: env.exe
+
+
+env.exe: env.c
+         cl env.c
+         upx --8086 ENV.EXE
+         del *.obj
