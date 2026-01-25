@@ -1,5 +1,0 @@
-test.obj: test.c
-    cl -c test.c
-
-test.exe: test.obj xmm.lib
-    link test,,,xmm;
