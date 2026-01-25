@@ -1,0 +1,153 @@
+
+; ----------------------------------------------------------
+
+        PUBLIC  $M_CLS_1
+        IF1
+        %out    ... Including message Class A
+        ENDIF
+
+; ----------------------------------------------------------
+
+$M_CLASS_A_STRUC LABEL BYTE
+        $M_CLASS_ID <0FFH,EXPECTED_VERSION,Class_A_MessageCount>
+
+; ----------------------------------------------------------
+
+
+$M_A_00001H_STRUC LABEL BYTE
+        $M_ID   <00001H,$M_A_00001H_MSG-$M_A_00001H_STRUC>
+
+$M_A_00002H_STRUC LABEL BYTE
+        $M_ID   <00002H,$M_A_00002H_MSG-$M_A_00002H_STRUC>
+
+$M_A_00003H_STRUC LABEL BYTE
+        $M_ID   <00003H,$M_A_00003H_MSG-$M_A_00003H_STRUC>
+
+$M_A_00004H_STRUC LABEL BYTE
+        $M_ID   <00004H,$M_A_00004H_MSG-$M_A_00004H_STRUC>
+
+$M_A_0000BH_STRUC LABEL BYTE
+        $M_ID   <0000BH,$M_A_0000BH_MSG-$M_A_0000BH_STRUC>
+
+$M_A_0000CH_STRUC LABEL BYTE
+        $M_ID   <0000CH,$M_A_0000CH_MSG-$M_A_0000CH_STRUC>
+
+$M_A_0000DH_STRUC LABEL BYTE
+        $M_ID   <0000DH,$M_A_0000DH_MSG-$M_A_0000DH_STRUC>
+
+$M_A_0000EH_STRUC LABEL BYTE
+        $M_ID   <0000EH,$M_A_0000EH_MSG-$M_A_0000EH_STRUC>
+
+$M_A_0000FH_STRUC LABEL BYTE
+        $M_ID   <0000FH,$M_A_0000FH_MSG-$M_A_0000FH_STRUC>
+
+$M_A_00010H_STRUC LABEL BYTE
+        $M_ID   <00010H,$M_A_00010H_MSG-$M_A_00010H_STRUC>
+
+$M_A_00011H_STRUC LABEL BYTE
+        $M_ID   <00011H,$M_A_00011H_MSG-$M_A_00011H_STRUC>
+
+$M_A_00015H_STRUC LABEL BYTE
+        $M_ID   <00015H,$M_A_00015H_MSG-$M_A_00015H_STRUC>
+
+$M_A_00016H_STRUC LABEL BYTE
+        $M_ID   <00016H,$M_A_00016H_MSG-$M_A_00016H_STRUC>
+
+$M_A_00017H_STRUC LABEL BYTE
+        $M_ID   <00017H,$M_A_00017H_MSG-$M_A_00017H_STRUC>
+
+; ----------------------------------------------------------
+
+
+$M_A_00001H_MSG LABEL BYTE
+        DB      $M_A_00001H_END-$M_A_00001H_MSG-1
+        DB      "Visit us at www.wiki.ptsource.eu.",CR,LF
+$M_A_00001H_END LABEL BYTE
+  
+$M_A_00002H_MSG LABEL BYTE
+        DB      $M_A_00002H_END-$M_A_00002H_MSG-1
+        DB      "Source path required",CR,LF
+$M_A_00002H_END LABEL BYTE
+  
+$M_A_00003H_MSG LABEL BYTE
+        DB      $M_A_00003H_END-$M_A_00003H_MSG-1
+        DB      CR,LF,"No files replaced",CR,LF
+$M_A_00003H_END LABEL BYTE
+  
+$M_A_00004H_MSG LABEL BYTE
+        DB      $M_A_00004H_END-$M_A_00004H_MSG-1
+        DB      CR,LF,"No files added",CR,LF
+$M_A_00004H_END LABEL BYTE
+  
+$M_A_0000BH_MSG LABEL BYTE
+        DB      $M_A_0000BH_END-$M_A_0000BH_MSG-1
+        DB      "File cannot be copied onto itself",CR,LF
+$M_A_0000BH_END LABEL BYTE
+  
+$M_A_0000CH_MSG LABEL BYTE
+        DB      $M_A_0000CH_END-$M_A_0000CH_MSG-1
+        DB      "Insufficient disk space",CR,LF
+$M_A_0000CH_END LABEL BYTE
+  
+$M_A_0000DH_MSG LABEL BYTE
+        DB      $M_A_0000DH_END-$M_A_0000DH_MSG-1
+        DB      CR,LF,"Replacing %1",CR,LF
+$M_A_0000DH_END LABEL BYTE
+  
+$M_A_0000EH_MSG LABEL BYTE
+        DB      $M_A_0000EH_END-$M_A_0000EH_MSG-1
+        DB      CR,LF,"Adding %1",CR,LF
+$M_A_0000EH_END LABEL BYTE
+  
+$M_A_0000FH_MSG LABEL BYTE
+        DB      $M_A_0000FH_END-$M_A_0000FH_MSG-1
+        DB      CR,LF,"%1 file(s) replaced",CR,LF
+$M_A_0000FH_END LABEL BYTE
+  
+$M_A_00010H_MSG LABEL BYTE
+        DB      $M_A_00010H_END-$M_A_00010H_MSG-1
+        DB      CR,LF,"%1 file(s) added",CR,LF
+$M_A_00010H_END LABEL BYTE
+  
+$M_A_00011H_MSG LABEL BYTE
+        DB      $M_A_00011H_END-$M_A_00011H_MSG-1
+        DB      CR,LF,"No files found - %1",CR,LF
+$M_A_00011H_END LABEL BYTE
+  
+$M_A_00015H_MSG LABEL BYTE
+        DB      $M_A_00015H_END-$M_A_00015H_MSG-1
+        DB      "Press any key to continue . . .",CR,LF
+$M_A_00015H_END LABEL BYTE
+  
+$M_A_00016H_MSG LABEL BYTE
+        DB      $M_A_00016H_END-$M_A_00016H_MSG-1
+        DB      CR,LF,"Replace %1? (Y/N)"
+$M_A_00016H_END LABEL BYTE
+  
+$M_A_00017H_MSG LABEL BYTE
+        DB      $M_A_00017H_END-$M_A_00017H_MSG-1
+        DB      CR,LF,"Add %1? (Y/N)"
+$M_A_00017H_END LABEL BYTE
+  
+; ----------------------------------------------------------
+
+Class_A_MessageCount EQU     14
+
+; ----------------------------------------------------------
+
+        IF      FARmsg
+$M_CLS_1 PROC FAR
+        ELSE
+$M_CLS_1 PROC NEAR
+        ENDIF
+
+        PUSH    CS
+        POP     ES
+        LEA     DI,$M_CLASS_A_STRUC
+        ADD     CX,$-$M_CLASS_A_STRUC
+        RET
+
+$M_CLS_1 ENDP
+
+; ----------------------------------------------------------
+
