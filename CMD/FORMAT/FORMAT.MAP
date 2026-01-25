@@ -1,9 +1,0 @@
-
- Start  Stop   Length Name                   Class
- 00000H 0007FH 00080H PSP                    DUMMY
- 00080H 016E1H 01662H DATA                   DATA
- 016F0H 018DFH 001F0H STACK                  
- 018E0H 0569FH 03DC0H CODE                   CODE
- 056A0H 056A0H 00000H END_OF_MEMORY          BUFFERS
-
-Program entry point at 018E:1EF0
