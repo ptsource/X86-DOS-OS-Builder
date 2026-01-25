@@ -1,0 +1,21 @@
+#************************** makefile for cmd\... ***************************
+
+dos	=..\..\dos
+inc	=..\..\inc
+hinc	=..\..\h
+
+#
+#######################	dependencies begin here. #########################
+#
+
+all: deldupe.com
+
+
+deldupe.obj: deldupe.asm
+          masm deldupe;
+
+deldupe.com: deldupe.obj
+	link deldupe;
+	exe2bin deldupe.exe DELDUPE.COM
+	del deldupe.exe
+	del *.obj

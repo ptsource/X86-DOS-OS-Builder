@@ -1,0 +1,17 @@
+#************************** makefile for cmd\... ***************************
+
+dos	=..\..\dos
+inc	=..\..\inc
+hinc	=..\..\h
+
+#
+#######################	dependencies begin here. #########################
+#
+
+all: dirspace.exe
+
+
+dirspace.exe: dirspace.c
+         tcc dirspace.c
+         upx --8086 DIRSPACE.EXE
+         del *.obj
