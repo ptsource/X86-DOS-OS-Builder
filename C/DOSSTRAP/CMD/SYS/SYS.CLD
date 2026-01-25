@@ -1,0 +1,49 @@
+
+; ----------------------------------------------------------
+
+        PUBLIC  $M_CLS_4
+        IF1
+        %out    ... Including message Class D
+        ENDIF
+
+; ----------------------------------------------------------
+
+$M_CLASS_D_STRUC LABEL BYTE
+        $M_CLASS_ID <0FFH,EXPECTED_VERSION,Class_D_MessageCount>
+
+; ----------------------------------------------------------
+
+
+$M_D_00011H_STRUC LABEL BYTE
+        $M_ID   <00011H,$M_D_00011H_MSG-$M_D_00011H_STRUC>
+
+; ----------------------------------------------------------
+
+
+$M_D_00011H_MSG LABEL BYTE
+        DB      $M_D_00011H_END-$M_D_00011H_MSG-1
+        DB      "Press any key to continue . . .",CR,LF
+$M_D_00011H_END LABEL BYTE
+  
+; ----------------------------------------------------------
+
+Class_D_MessageCount EQU     1
+
+; ----------------------------------------------------------
+
+        IF      FARmsg
+$M_CLS_4 PROC FAR
+        ELSE
+$M_CLS_4 PROC NEAR
+        ENDIF
+
+        PUSH    CS
+        POP     ES
+        LEA     DI,$M_CLASS_D_STRUC
+        ADD     CX,$-$M_CLASS_D_STRUC
+        RET
+
+$M_CLS_4 ENDP
+
+; ----------------------------------------------------------
+
