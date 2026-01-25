@@ -1,0 +1,15 @@
+
+ Start  Stop   Length Name                   Class
+ 00000H 04331H 04332H IFSSEG                 IFSSEG
+ 04340H 04342H 00003H START                  START
+ 04344H 046F5H 003B2H CONSTANTS              CONST
+ 046F6H 05051H 0095CH DATA                   DATA
+ 05052H 0585EH 0080DH TABLE                  TABLE
+ 0585FH 05D57H 004F9H CODE                   CODE
+ 05D60H 0622FH 004D0H LAST                   LAST
+ 06230H 063C5H 00196H STACK                  
+
+ Origin   Group
+ 0434:0   DOSGROUP
+
+Program entry point at 0000:3F62
