@@ -1,6 +1,0 @@
-DOSBox version 0.74-3
-Copyright 2002-2019 DOSBox Team, published under GNU GPL.
----
-CONFIG:Loading primary settings from config file C:\TOOLS\DESKTOP\DOSBox\Data\settings\DOSBox.conf
-MIDI:Opened device:win32
-DOS keyboard layout loaded with main language code PO for layout po
