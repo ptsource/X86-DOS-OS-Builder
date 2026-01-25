@@ -1,0 +1,16 @@
+#************************* Root level Makefile *************************
+
+make	=nmake
+
+all:
+        cd himem
+	$(make)
+        cd ..\emm
+	$(make)
+	cd ..\memm
+	$(make)
+	cd ..
+
+
+
+

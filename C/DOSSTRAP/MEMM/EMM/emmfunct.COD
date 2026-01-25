@@ -1,0 +1,1154 @@
+;	Static Name Aliases
+;
+	TITLE   emmfunct.c
+	NAME    emmfunct
+
+	.286p
+	.287
+_TEXT	SEGMENT  WORD PUBLIC 'CODE'
+_TEXT	ENDS
+_DATA	SEGMENT  WORD PUBLIC 'DATA'
+_DATA	ENDS
+CONST	SEGMENT  WORD PUBLIC 'CONST'
+CONST	ENDS
+_BSS	SEGMENT  WORD PUBLIC 'BSS'
+_BSS	ENDS
+DGROUP	GROUP	CONST, _BSS, _DATA
+	ASSUME  CS: _TEXT, DS: DGROUP, SS: DGROUP
+EXTRN	__acrtused:ABS
+EXTRN	_ReallocatePages:NEAR
+EXTRN	_valid_handle:NEAR
+EXTRN	_dest_addr:NEAR
+EXTRN	_wcopy:NEAR
+EXTRN	_PF_Base:WORD
+EXTRN	_page_frame_pages:WORD
+EXTRN	_regp:DWORD
+EXTRN	_save_map:BYTE
+EXTRN	_handle_table:BYTE
+EXTRN	_Handle_Name_Table:BYTE
+EXTRN	_handle_table_size:WORD
+EXTRN	_handle_count:WORD
+EXTRN	_emm_page:WORD
+EXTRN	_free_count:WORD
+EXTRN	_total_pages:WORD
+EXTRN	_emmpt_start:WORD
+EXTRN	_emm_free:WORD
+EXTRN	_free_top:WORD
+EXTRN	_EMMstatus:WORD
+_TEXT      SEGMENT
+	ASSUME	CS: _TEXT
+;|*** 
+;|*** 
+;|*** /******************************************************************************
+;|*** 	INCLUDE FILES
+;|***  ******************************************************************************/ 
+;|*** #include "emm.h"
+;|*** 
+;|*** 
+;|*** /******************************************************************************
+;|*** 	EXTERNAL DATA STRUCTURES
+;|***  ******************************************************************************/ 
+;|*** /*
+;|***  * I/O Map
+;|***  * map_size
+;|***  *	this is an array of port addresses, 4 ports per
+;|***  *	emulated board. Each emulated board has up to
+;|***  *	128 16Kb EMM pages assigned. The size of the table,
+;|***  *	the number of ports used, is map_size
+;|***  *		map_size = (<number of 386 pages>/(128*4))*4
+;|***  */
+;|*** /*extern unsigned short	iomap[]; */
+;|*** /*extern char		map_size;*/
+;|*** 
+;|*** /*
+;|***  *  map_known
+;|***  *	This flags is set whenever the user is given the I/O map
+;|***  */
+;|*** /*extern char		map_known; */
+;|*** 
+;|*** /*
+;|***  * page frame base
+;|***  *	this is a map of the linear addresses of the
+;|***  *	4 16Kb EMM `physical' windows that the user
+;|***  *	accesses the EMM pages through. The entries
+;|***  *	of this array are far pointers into the page table.
+;|***  *	Thus, the address defined by page_frame_base[0]
+;|***  *	is the address of the long word that is the page
+;|***  *	table entry for the first EMM window. The reason for 
+;|***  *	this obscurity is in speed of mapping -- it is used
+;|***  *	to directly obtain access to the entry to be programmed
+;|***  */
+;|*** extern unsigned	long page_frame_base[];
+;|*** 
+;|*** /*
+;|***  * save_map
+;|***  *	This is an array of structures that save the 
+;|***  *	current mapping state. Size is dynamically determined.
+;|***  */
+;|*** extern struct save_map save_map[];
+;|*** 
+;|*** /*
+;|***  * handle_table
+;|***  *	This is an array of handle pointers.
+;|***  *	page_index of zero means free
+;|***  */
+;|*** extern struct handle_ptr handle_table[];
+;|*** extern Handle_Name Handle_Name_Table[];
+;|*** extern unsigned short	handle_table_size;	/* number of entries */
+;|*** extern unsigned short	handle_count;		/* active handle count */
+;|*** 
+;|*** /*
+;|***  * EMM Page table
+;|***  *	this array contains lists of indexes into the 386
+;|***  *	Page Frame Addresses (pft386).  Each list is pointed to
+;|***  *	by a handle table entry and is sequential/contiguous.
+;|***  *	This is so that maphandlepage doesn't have to scan
+;|***  *	a list for the specified entry.
+;|***  */
+;|*** extern unsigned	short	*emm_page;		/* ptr to _emm_page array */
+;|*** extern unsigned	short	free_count;		/* current free count */
+;|*** extern unsigned	short	total_pages;		/* number being managed */
+;|*** extern unsigned	short	emmpt_start;		/* next free entry in table */
+;|*** 
+;|*** /*
+;|***  * EMM free table
+;|***  *	this array is a stack of available page table entries. 
+;|***  *	each entry is an index into pft386[].
+;|***  */
+;|*** extern	unsigned short	*emm_free;		/* ptr to _emm_free array */
+;|*** extern	unsigned short	free_top;
+;|*** 
+;|*** /*
+;|***  * Page frame table
+;|***  *	This array contains addresses of physical page frames
+;|***  *	for 386 pages. A page is refered to by an index into
+;|***  *	this array
+;|***  */
+;|*** extern union pft386 *pft386;		/* ptr to page frame table array */
+;|*** 
+;|*** 
+;|*** /*
+;|***  * Current status of `HW'. The way this is handled is that
+;|***  * when returning status to caller, normal status is reported 
+;|***  * via EMMstatus being moved into AX. Persistant errors
+;|***  * (such as internal datastructure inconsistancies, etc) are
+;|***  * placed in `EMMstatus' as HW failures. All other errors are 
+;|***  * transient in nature (out of memory, handles, ...) and are 
+;|***  * thus reported by directly setting AX. The EMMstatus variable
+;|***  * is provided for expansion and is not currently being
+;|***  * set to any other value.
+;|***  */
+;|*** extern unsigned short EMMstatus;
+;|*** 
+;|*** /*
+;|***  * debug & such
+;|***  */
+;|*** /*unsigned null_count = 0;	/* number of attempts to map null pages */
+;|*** 
+;|*** 
+;|*** /******************************************************************************
+;|*** 	EXTERNAL FUNCTIONS
+;|***  ******************************************************************************/ 
+;|*** extern	struct handle_ptr	*valid_handle();	/* validate handle */
+;|*** extern  unsigned far		*source_addr();		/* get DS:SI far ptr */
+;|*** extern  unsigned far		*dest_addr();		/* get ES:DI far ptr */
+;|*** /*extern	unsigned		AutoUpdate();		/* update auto mode */
+;|*** extern	unsigned		wcopy();
+;|*** extern	unsigned		copyout();
+;|*** extern	void			reallocate();
+;|*** 
+;|*** 
+;|*** /******************************************************************************
+;|*** 	ROUTINES
+;|***  ******************************************************************************/ 
+;|*** 
+;|*** /*
+;|***  * Avail_Pages()
+;|***  * returns: number of available emm pages
+;|***  *
+;|***  *	06/09/88	PC	added the function
+;|***  */
+;|*** unsigned short
+;|*** Avail_Pages()
+;|*** {
+; Line 134
+	PUBLIC	_Avail_Pages
+_Avail_Pages	PROC NEAR
+;|*** 	return(free_count) ;
+; Line 135
+	*** 000000	a1 00 00 		mov	ax,_free_count
+	*** 000003	c3 			ret	
+
+_Avail_Pages	ENDP
+;|*** }
+;|*** 
+;|*** /*
+;|***  * get_pages(num,pto)
+;|***  *	num --- number of pages desired
+;|***  *      pto --- offset into emm_page array where the pages got are to be copied
+;|***  * return value:
+;|***  *	emm_page[] index (pointer to list of allocated pages)
+;|***  *	NULL_PAGE means failure.
+;|***  *	
+;|***  * 	05/06/88  ISP	Updated for MEMM removed handle as a parameter 
+;|***  */
+;|*** unsigned
+;|*** get_pages(num,pto)
+;|*** register unsigned num;
+; Line 150
+	PUBLIC	_get_pages
+_get_pages	PROC NEAR
+	*** 000004	c8 04 00 00 		enter	WORD PTR 4,0
+	*** 000008	57 			push	di
+	*** 000009	56 			push	si
+;|*** register unsigned pto;
+;|*** {
+; Line 152
+	*** 00000a	8b 76 04 		mov	si,WORD PTR [bp+4]	;num
+	*** 00000d	8b 7e 06 		mov	di,WORD PTR [bp+6]	;pto
+;	pg = -4
+;	f_page = -2
+;	register si = num
+;	register di = pto
+;|*** 	register unsigned pg;
+;|*** 	unsigned	f_page;
+;|*** 
+;|*** 	if(free_count < num)
+; Line 156
+	*** 000010	39 36 00 00 		cmp	_free_count,si
+	*** 000014	73 08 			jae	$I195
+;|*** 		return(NULL_PAGE);	/* not enough memory */
+; Line 157
+	*** 000016	b8 ff ff 		mov	ax,-1
+	*** 000019	5e 			pop	si
+	*** 00001a	5f 			pop	di
+	*** 00001b	c9 			leave	
+	*** 00001c	c3 			ret	
+	*** 00001d	90 			nop	
+					$I195:
+	*** 00001e	29 36 00 00 		sub	_free_count,si
+;|*** 	free_count -= num;		/* adjust free count */
+;|*** 	f_page = pg = pto;
+; Line 159
+	*** 000022	89 7e fc 		mov	WORD PTR [bp-4],di	;pg
+	*** 000025	89 7e fe 		mov	WORD PTR [bp-2],di	;f_page
+;|*** /*	  emmpt_start += num;	*/	    /* new offset of avail area */
+;|*** 
+;|*** 	/*
+;|*** 	 * copy num elements from the emm_free array
+;|*** 	 * to the emm_page table array and update the
+;|*** 	 * corresponding page frame table entry (with a 
+;|*** 	 * handle back pointer)
+;|*** 	 */
+;|*** 	wcopy(emm_free+free_top, emm_page+pg, num);
+; Line 168
+	*** 000028	56 			push	si
+	*** 000029	8b c7 			mov	ax,di
+	*** 00002b	d1 e0 			shl	ax,1
+	*** 00002d	03 06 00 00 		add	ax,_emm_page
+	*** 000031	50 			push	ax
+	*** 000032	a1 00 00 		mov	ax,_free_top
+	*** 000035	d1 e0 			shl	ax,1
+	*** 000037	03 06 00 00 		add	ax,_emm_free
+	*** 00003b	50 			push	ax
+	*** 00003c	e8 00 00 		call	_wcopy
+	*** 00003f	83 c4 06 		add	sp,6
+;|*** 	free_top += num;
+; Line 169
+	*** 000042	01 36 00 00 		add	_free_top,si
+;|*** 	return(f_page);
+; Line 170
+	*** 000046	8b c7 			mov	ax,di
+	*** 000048	5e 			pop	si
+	*** 000049	5f 			pop	di
+	*** 00004a	c9 			leave	
+	*** 00004b	c3 			ret	
+
+_get_pages	ENDP
+;|*** }
+;|*** 
+;|*** 
+;|*** /*
+;|***  * free_pages(hp)
+;|***  *	hp --- handle whose pages should be deallocated
+;|***  *
+;|***  * Free the pages associated with the handle, but don't free the handle
+;|***  *
+;|***  *  05/09/88	ISP Pulled out from the deallocate page routine
+;|***  */
+;|*** void
+;|*** free_pages(hp)
+;|*** register struct handle_ptr *hp;
+; Line 184
+	PUBLIC	_free_pages
+_free_pages	PROC NEAR
+	*** 00004c	c8 06 00 00 		enter	WORD PTR 6,0
+	*** 000050	57 			push	di
+	*** 000051	56 			push	si
+;|*** {
+; Line 185
+	*** 000052	8b 76 04 		mov	si,WORD PTR [bp+4]	;hp
+;	register si = hp
+;	register di = next
+;	new_start = -4
+;	h_size = -2
+;|*** 	register unsigned		next;
+;|*** 	unsigned			new_start;
+;|*** 	unsigned			h_size;
+;|*** 
+;|*** 	if (hp->page_count == 0) return ;
+; Line 190
+	*** 000055	83 7c 02 00 		cmp	WORD PTR [si+2],0
+	*** 000059	75 03 			jne	$JCC89
+	*** 00005b	e9 98 00 		jmp	$EX198
+					$JCC89:
+	*** 00005e	8b 44 02 		mov	ax,WORD PTR [si+2]
+	*** 000061	29 06 00 00 		sub	_free_top,ax
+;|*** 	/*
+;|*** 	 * copy freed pages to top of free stack 
+;|*** 	 */
+;|*** 	free_top -= hp->page_count;	/* free_top points to new top */
+;|*** 	free_count += hp->page_count;	/* bookkeeping */
+; Line 195
+	*** 000065	01 06 00 00 		add	_free_count,ax
+;|*** 	wcopy(emm_page+hp->page_index, /* addr of first of list */
+;|*** 		emm_free+free_top,	 /* addr of free space */
+;|*** 		hp->page_count);	 /* # of pages to be freed */
+; Line 198
+	*** 000069	50 			push	ax
+	*** 00006a	a1 00 00 		mov	ax,_free_top
+	*** 00006d	d1 e0 			shl	ax,1
+	*** 00006f	03 06 00 00 		add	ax,_emm_free
+	*** 000073	50 			push	ax
+	*** 000074	8b 04 			mov	ax,WORD PTR [si]
+	*** 000076	d1 e0 			shl	ax,1
+	*** 000078	03 06 00 00 		add	ax,_emm_page
+	*** 00007c	50 			push	ax
+	*** 00007d	e8 00 00 		call	_wcopy
+	*** 000080	83 c4 06 		add	sp,6
+;|*** 
+;|*** 	/*
+;|*** 	 * now, the hard part. squeeze the newly created hole
+;|*** 	 * out of the emm_page array. this also requires updating the
+;|*** 	 *  handle_table entry via the backlink in the pft386 array.
+;|*** 	 *
+;|*** 	 * do this in two phases:
+;|*** 	 *	- copy the lower portion up to squeeze the hole out
+;|*** 	 *	- readjust the handle table to point to the new
+;|*** 	 *	   location of the head element
+;|*** 	 */
+;|*** 
+;|*** 	next = hp->page_index + hp->page_count;
+; Line 211
+	*** 000083	8b 3c 			mov	di,WORD PTR [si]
+	*** 000085	03 7c 02 		add	di,WORD PTR [si+2]
+;|*** 	if(next == emmpt_start )	/* any lists below? */
+; Line 212
+	*** 000088	39 3e 00 00 		cmp	_emmpt_start,di
+	*** 00008c	75 0c 			jne	$I203
+;|*** 	{
+; Line 213
+;|*** 		/* no, all done */
+;|*** 		emmpt_start -= hp->page_count;
+; Line 215
+	*** 00008e	8b 44 02 		mov	ax,WORD PTR [si+2]
+	*** 000091	29 06 00 00 		sub	_emmpt_start,ax
+;|*** 		return;
+; Line 216
+	*** 000095	5e 			pop	si
+	*** 000096	5f 			pop	di
+	*** 000097	c9 			leave	
+	*** 000098	c3 			ret	
+	*** 000099	90 			nop	
+					$I203:
+	*** 00009a	a1 00 00 		mov	ax,_emmpt_start
+	*** 00009d	2b 44 02 		sub	ax,WORD PTR [si+2]
+	*** 0000a0	89 46 fc 		mov	WORD PTR [bp-4],ax	;new_start
+;|*** 	}
+;|*** 
+;|*** 	new_start = emmpt_start - hp->page_count;
+;|*** 	wcopy(emm_page+next,	/* 1st of rest of list */
+;|*** 		emm_page+hp->page_index,/* addr of freed area */
+;|*** 		emmpt_start-next);	/* size of block of pages  */
+; Line 222
+	*** 0000a3	a1 00 00 		mov	ax,_emmpt_start
+	*** 0000a6	2b c7 			sub	ax,di
+	*** 0000a8	50 			push	ax
+	*** 0000a9	8b 04 			mov	ax,WORD PTR [si]
+	*** 0000ab	d1 e0 			shl	ax,1
+	*** 0000ad	03 06 00 00 		add	ax,_emm_page
+	*** 0000b1	50 			push	ax
+	*** 0000b2	8b c7 			mov	ax,di
+	*** 0000b4	d1 e0 			shl	ax,1
+	*** 0000b6	03 06 00 00 		add	ax,_emm_page
+	*** 0000ba	50 			push	ax
+	*** 0000bb	e8 00 00 		call	_wcopy
+	*** 0000be	83 c4 06 		add	sp,6
+;|*** 
+;|*** 	/*
+;|*** 	 * loop through the handle table entries, fixing up
+;|*** 	 * their page index fields
+;|*** 	 */
+;|*** 	h_size = hp->page_count;
+; Line 228
+	*** 0000c1	8b 44 02 		mov	ax,WORD PTR [si+2]
+	*** 0000c4	89 46 fe 		mov	WORD PTR [bp-2],ax	;h_size
+;|*** 	hp->page_count = 0;		/* not really necessary */
+; Line 229
+	*** 0000c7	c7 44 02 00 00 		mov	WORD PTR [si+2],0
+;|*** 	for(hp=handle_table;hp < &handle_table[handle_table_size];hp++)
+; Line 230
+	*** 0000cc	be 00 00 		mov	si,OFFSET _handle_table
+	*** 0000cf	eb 12 			jmp	SHORT $F204
+	*** 0000d1	90 			nop	
+					$FC205:
+;|*** 		if((hp->page_index != NULL_PAGE) &&
+;|*** 		   (hp->page_index >= next) )
+; Line 232
+	*** 0000d2	83 3c ff 		cmp	WORD PTR [si],-1
+	*** 0000d5	74 09 			je	$L20000
+	*** 0000d7	39 3c 			cmp	WORD PTR [si],di
+	*** 0000d9	72 05 			jb	$L20000
+;|*** 			hp->page_index -= h_size;
+; Line 233
+	*** 0000db	8b 46 fe 		mov	ax,WORD PTR [bp-2]	;h_size
+	*** 0000de	29 04 			sub	WORD PTR [si],ax
+;|*** 	emmpt_start = new_start;		/* fix emmpt_start */
+; Line 234
+					$L20000:
+	*** 0000e0	83 c6 04 		add	si,4
+					$F204:
+	*** 0000e3	a1 00 00 		mov	ax,_handle_table_size
+	*** 0000e6	c1 e0 02 		shl	ax,2
+	*** 0000e9	05 00 00 		add	ax,OFFSET _handle_table
+	*** 0000ec	3b c6 			cmp	ax,si
+	*** 0000ee	77 e2 			ja	$FC205
+	*** 0000f0	8b 46 fc 		mov	ax,WORD PTR [bp-4]	;new_start
+	*** 0000f3	a3 00 00 		mov	_emmpt_start,ax
+;|*** }
+; Line 235
+					$EX198:
+	*** 0000f6	5e 			pop	si
+	*** 0000f7	5f 			pop	di
+	*** 0000f8	c9 			leave	
+	*** 0000f9	c3 			ret	
+
+_free_pages	ENDP
+;|*** 
+;|*** /*
+;|***  * get status
+;|***  *	no parameters
+;|***  *
+;|***  * return current status of EMM subsystem
+;|***  * (which, due to superior design is always just fine)
+;|***  *
+;|***  *  	05/06/88  ISP 	No Update needed for MEMM
+;|***  */
+;|*** GetStatus()
+;|*** {
+; Line 247
+	PUBLIC	_GetStatus
+_GetStatus	PROC NEAR
+;|*** 	setAH((unsigned char)EMMstatus);	/* if we got here, we're OK */
+; Line 248
+	*** 0000fa	c4 1e 00 00 		les	bx,DWORD PTR _regp
+	*** 0000fe	a0 00 00 		mov	al,BYTE PTR _EMMstatus
+	*** 000101	26 88 47 1d 		mov	BYTE PTR es:[bx+29],al
+;|*** }
+; Line 249
+	*** 000105	c3 			ret	
+
+_GetStatus	ENDP
+;|*** 
+;|*** 
+;|*** /*
+;|***  * get page frame address
+;|***  *	no parameters
+;|***  *
+;|***  * return the address of where the pages get mapped 
+;|***  * in user space
+;|***  *
+;|***  *	05/06/88  ISP	Updated this routine from WIN386 sources.
+;|***  */
+;|*** GetPageFrameAddress()
+;|*** {
+; Line 262
+	PUBLIC	_GetPageFrameAddress
+_GetPageFrameAddress	PROC NEAR
+;|*** 	extern unsigned short PF_Base;
+;|*** 	extern unsigned short page_frame_pages;
+;|*** 
+;|*** 	/*
+;|*** 	 * return the 8086 style base address of
+;|*** 	 * the page frame base. 
+;|*** 	 */
+;|*** 	if ( page_frame_pages < 4 ) {
+; Line 270
+	*** 000106	83 3e 00 00 04 		cmp	WORD PTR _page_frame_pages,4
+	*** 00010b	73 1f 			jae	$I214
+;|*** 		setAH(EMM_HW_MALFUNCTION);	/* GET LOST!!! */
+; Line 271
+	*** 00010d	c4 1e 00 00 		les	bx,DWORD PTR _regp
+	*** 000111	26 c6 47 1d 81 		mov	BYTE PTR es:[bx+29],129
+;|*** 		if ( PF_Base == 0xFFFF )
+; Line 272
+	*** 000116	83 3e 00 00 ff 		cmp	WORD PTR _PF_Base,-1
+	*** 00011b	75 07 			jne	$I215
+;|*** 			setBX(0xB000);		/* In case error is ignored */
+; Line 273
+	*** 00011d	26 c7 47 10 00 b0 	mov	WORD PTR es:[bx+16],-20480
+;|*** 		else
+; Line 274
+	*** 000123	c3 			ret	
+					$I215:
+;|*** 			setBX(PF_Base);	/* stunted page frame */
+; Line 275
+	*** 000124	a1 00 00 		mov	ax,_PF_Base
+	*** 000127	26 89 47 10 		mov	WORD PTR es:[bx+16],ax
+;|*** 		return;
+; Line 276
+	*** 00012b	c3 			ret	
+					$I214:
+	*** 00012c	c4 1e 00 00 		les	bx,DWORD PTR _regp
+	*** 000130	a1 00 00 		mov	ax,_PF_Base
+	*** 000133	26 89 47 10 		mov	WORD PTR es:[bx+16],ax
+;|*** 	}
+;|*** 	setBX(PF_Base);
+;|*** 	setAH((unsigned char)EMMstatus);	/* OK return */
+; Line 279
+	*** 000137	a0 00 00 		mov	al,BYTE PTR _EMMstatus
+	*** 00013a	26 88 47 1d 		mov	BYTE PTR es:[bx+29],al
+;|*** }
+; Line 280
+	*** 00013e	c3 			ret	
+	*** 00013f	90 			nop	
+
+_GetPageFrameAddress	ENDP
+;|*** 
+;|*** 
+;|*** /*
+;|***  * get unallocated page count
+;|***  *	no parameters
+;|***  *
+;|***  * returns:
+;|***  *	bx -- count of free pages
+;|***  *	dx -- total number of pages (free and allocated)
+;|***  *
+;|***  *	05/06/88  ISP	No update needed for MEMM
+;|***  */
+;|*** GetUnallocatedPageCount()
+;|*** {
+; Line 294
+	PUBLIC	_GetUnallocatedPageCount
+_GetUnallocatedPageCount	PROC NEAR
+;|*** 	setBX(free_count);
+; Line 295
+	*** 000140	c4 1e 00 00 		les	bx,DWORD PTR _regp
+	*** 000144	a1 00 00 		mov	ax,_free_count
+	*** 000147	26 89 47 10 		mov	WORD PTR es:[bx+16],ax
+;|*** 	setDX(total_pages);
+; Line 296
+	*** 00014b	a1 00 00 		mov	ax,_total_pages
+	*** 00014e	26 89 47 14 		mov	WORD PTR es:[bx+20],ax
+;|*** 	setAH((unsigned char)EMMstatus);
+; Line 297
+	*** 000152	a0 00 00 		mov	al,BYTE PTR _EMMstatus
+	*** 000155	26 88 47 1d 		mov	BYTE PTR es:[bx+29],al
+;|*** }
+; Line 298
+	*** 000159	c3 			ret	
+
+_GetUnallocatedPageCount	ENDP
+;|*** 
+;|*** /*
+;|***  * allocate pages
+;|***  *	parameters:
+;|***  *		n_pages (bx) -- allocation size request
+;|***  *
+;|***  * allocates the requested number of pages, creates
+;|***  * a handle table entry and returns a handle to the
+;|***  * allocated pages.
+;|***  *	calls AllocateRawPages
+;|***  *
+;|***  *  05/09/88  ISP   updated for MEMM.  Only handle value returned, not handle
+;|***  *		    value with high byte as not of handle value. call to get
+;|***  *		    pages also updated to remove handle parameter.
+;|***  */
+;|*** AllocatePages()
+;|*** {
+; Line 315
+	PUBLIC	_AllocatePages
+_AllocatePages	PROC NEAR
+;|*** #define	n_pages	((unsigned)regp->hregs.x.rbx)
+;|*** 	if(handle_count == handle_table_size){	/* no more handles? */
+; Line 317
+	*** 00015a	a1 00 00 		mov	ax,_handle_table_size
+	*** 00015d	39 06 00 00 		cmp	_handle_count,ax
+	*** 000161	75 0b 			jne	$I221
+;|*** 		setAH(NO_MORE_HANDLES);	/* nope */
+; Line 318
+	*** 000163	c4 1e 00 00 		les	bx,DWORD PTR _regp
+	*** 000167	26 c6 47 1d 85 		mov	BYTE PTR es:[bx+29],133
+;|*** 		return;
+; Line 319
+	*** 00016c	c3 			ret	
+	*** 00016d	90 			nop	
+					$I221:
+	*** 00016e	c4 1e 00 00 		les	bx,DWORD PTR _regp
+	*** 000172	26 83 7f 10 00 		cmp	WORD PTR es:[bx+16],0
+	*** 000177	75 07 			jne	$I222
+;|*** 	}
+;|*** 
+;|*** 	if(n_pages == 0) {
+;|*** 		setAH(ZERO_PAGES);
+; Line 323
+	*** 000179	26 c6 47 1d 89 		mov	BYTE PTR es:[bx+29],137
+;|*** 		return;
+; Line 324
+	*** 00017e	c3 			ret	
+	*** 00017f	90 			nop	
+					$I222:
+	*** 000180	e8 00 00 		call	_AllocateRawPages
+;|*** 	}
+;|*** 
+;|*** 	AllocateRawPages() ;
+;|*** }
+; Line 328
+	*** 000183	c3 			ret	
+
+_AllocatePages	ENDP
+;|*** #undef	n_pages
+;|*** 
+;|*** /*
+;|***  * allocate raw pages
+;|***  *	parameters:
+;|***  *		n_pages (bx) -- allocation size request
+;|***  *
+;|***  * allocates the requested number of raw pages,
+;|***  * allocating 0 page is Okay
+;|***  * calls allocated pages if non-zero.
+;|***  *
+;|***  * CREATED : 08/08/88 PLC
+;|***  */
+;|*** AllocateRawPages()
+;|*** {
+; Line 343
+	PUBLIC	_AllocateRawPages
+_AllocateRawPages	PROC NEAR
+	*** 000184	c8 04 00 00 		enter	WORD PTR 4,0
+	*** 000188	57 			push	di
+	*** 000189	56 			push	si
+;	register si = handle
+;	register di = hp
+;|*** #define	n_pages	((unsigned)regp->hregs.x.rbx)
+;|*** 	register unsigned handle;	/* handle table index */
+;|*** 	register struct handle_ptr *hp;
+;|*** 
+;|*** 	if(handle_count == handle_table_size){	/* no more handles? */
+; Line 348
+	*** 00018a	a1 00 00 		mov	ax,_handle_table_size
+	*** 00018d	39 06 00 00 		cmp	_handle_count,ax
+	*** 000191	75 0d 			jne	$I227
+;|*** 		setAH(NO_MORE_HANDLES);	/* nope */
+; Line 349
+	*** 000193	c4 1e 00 00 		les	bx,DWORD PTR _regp
+	*** 000197	26 c6 47 1d 85 		mov	BYTE PTR es:[bx+29],133
+;|*** 		return;
+; Line 350
+	*** 00019c	5e 			pop	si
+	*** 00019d	5f 			pop	di
+	*** 00019e	c9 			leave	
+	*** 00019f	c3 			ret	
+					$I227:
+	*** 0001a0	c4 1e 00 00 		les	bx,DWORD PTR _regp
+	*** 0001a4	a1 00 00 		mov	ax,_total_pages
+	*** 0001a7	26 39 47 10 		cmp	WORD PTR es:[bx+16],ax
+	*** 0001ab	76 09 			jbe	$I228
+;|*** 	}
+;|*** 
+;|*** 	if(n_pages > total_pages) {
+;|*** 		setAH(NOT_ENOUGH_EXT_MEM);
+; Line 354
+	*** 0001ad	26 c6 47 1d 87 		mov	BYTE PTR es:[bx+29],135
+;|*** 		return;
+; Line 355
+	*** 0001b2	5e 			pop	si
+	*** 0001b3	5f 			pop	di
+	*** 0001b4	c9 			leave	
+	*** 0001b5	c3 			ret	
+					$I228:
+	*** 0001b6	bf 00 00 		mov	di,OFFSET _handle_table
+;|*** 	}
+;|*** 
+;|*** 	/*
+;|*** 	 * loop through table to
+;|*** 	 * find available handle (page_index = NULL_PAGE)
+;|*** 	 */
+;|*** 	hp = (struct handle_ptr *)handle_table;
+;|*** 	for(handle=0;handle<handle_table_size;handle++,hp++)
+; Line 363
+	*** 0001b9	2b f6 			sub	si,si
+	*** 0001bb	eb 05 			jmp	SHORT $F229
+	*** 0001bd	90 			nop	
+					$FC230:
+	*** 0001be	46 			inc	si
+	*** 0001bf	83 c7 04 		add	di,4
+					$F229:
+	*** 0001c2	39 36 00 00 		cmp	_handle_table_size,si
+	*** 0001c6	76 05 			jbe	$FB231
+;|*** 		if(hp->page_index == NULL_PAGE) 
+; Line 364
+	*** 0001c8	83 3d ff 		cmp	WORD PTR [di],-1
+	*** 0001cb	75 f1 			jne	$FC230
+;|*** 			break;		/* found a free one */
+; Line 365
+					$FB231:
+	*** 0001cd	ff 36 00 00 		push	WORD PTR _emmpt_start
+	*** 0001d1	c4 1e 00 00 		les	bx,DWORD PTR _regp
+	*** 0001d5	26 ff 77 10 		push	WORD PTR es:[bx+16]
+	*** 0001d9	e8 28 fe 		call	_get_pages
+	*** 0001dc	83 c4 04 		add	sp,4
+	*** 0001df	89 05 			mov	WORD PTR [di],ax
+	*** 0001e1	3d ff ff 		cmp	ax,-1
+	*** 0001e4	74 16 			je	$I233
+;|*** 	/*
+;|*** 	 * try and allocate pages 
+;|*** 	 */
+;|*** 	if((hp->page_index=get_pages(n_pages,emmpt_start)) != NULL_PAGE) {
+;|*** 		emmpt_start += n_pages;
+; Line 370
+	*** 0001e6	c4 1e 00 00 		les	bx,DWORD PTR _regp
+	*** 0001ea	26 8b 47 10 		mov	ax,WORD PTR es:[bx+16]
+	*** 0001ee	01 06 00 00 		add	_emmpt_start,ax
+;|*** 		setAH((unsigned char)EMMstatus);	/* got them! */
+; Line 371
+	*** 0001f2	a0 00 00 		mov	al,BYTE PTR _EMMstatus
+	*** 0001f5	26 88 47 1d 		mov	BYTE PTR es:[bx+29],al
+;|*** 	}
+; Line 372
+;|*** 	else {
+; Line 373
+	*** 0001f9	eb 0f 			jmp	SHORT $I234
+	*** 0001fb	90 			nop	
+					$I233:
+;|*** 		setAH(NOT_ENOUGH_FREE_MEM);	/* out of pages */
+; Line 374
+	*** 0001fc	c4 1e 00 00 		les	bx,DWORD PTR _regp
+	*** 000200	26 c6 47 1d 88 		mov	BYTE PTR es:[bx+29],136
+;|*** 		return;
+; Line 375
+	*** 000205	5e 			pop	si
+	*** 000206	5f 			pop	di
+	*** 000207	c9 			leave	
+	*** 000208	c3 			ret	
+	*** 000209	90 			nop	
+					$I234:
+;|*** 	}
+;|*** 
+;|*** 	hp->page_count=n_pages;	/* set count */
+; Line 378
+	*** 00020a	26 8b 47 10 		mov	ax,WORD PTR es:[bx+16]
+	*** 00020e	89 45 02 		mov	WORD PTR [di+2],ax
+;|*** 	handle_count++;
+; Line 379
+	*** 000211	ff 06 00 00 		inc	WORD PTR _handle_count
+;|*** 	setDX(handle);
+; Line 380
+	*** 000215	26 89 77 14 		mov	WORD PTR es:[bx+20],si
+;|*** 
+;|*** /*	AutoUpdate();	/* update status of Auto mode */
+;|*** 
+;|*** }
+; Line 384
+	*** 000219	5e 			pop	si
+	*** 00021a	5f 			pop	di
+	*** 00021b	c9 			leave	
+	*** 00021c	c3 			ret	
+	*** 00021d	90 			nop	
+
+_AllocateRawPages	ENDP
+;|*** #undef	n_pages
+;|*** 
+;|*** /*
+;|***  * deallocate pages
+;|***  *	parameters:
+;|***  *		dx -- handle
+;|***  *
+;|***  * free up the pages and handle table entry associated
+;|***  * with this handle
+;|***  *
+;|***  * 05/09/88  ISP    Updated for MEMM. Pulled out free_page routine and
+;|***  *		    added support for handle name blanking.
+;|***  */
+;|*** DeallocatePages()
+;|*** {
+; Line 399
+	PUBLIC	_DeallocatePages
+_DeallocatePages	PROC NEAR
+	*** 00021e	c8 08 00 00 		enter	WORD PTR 8,0
+	*** 000222	57 			push	di
+	*** 000223	56 			push	si
+;	register si = hp
+;	smp = -2
+;	Name = -4
+;|*** #define	handle ((unsigned)regp->hregs.x.rdx)
+;|*** 	register struct handle_ptr	*hp;
+;|*** 	struct save_map			*smp;	/* save map table ptr */
+;|*** 	long	*Name ;		/* points to handle name entry to clear */
+;|*** 
+;|*** 	if ( handle == 0 ) {		/* Special handle, don't release */
+; Line 405
+	*** 000224	c4 1e 00 00 		les	bx,DWORD PTR _regp
+	*** 000228	26 83 7f 14 00 		cmp	WORD PTR es:[bx+20],0
+	*** 00022d	75 1f 			jne	$I240
+;	savbx = -8
+;|*** 		int savbx = regp->hregs.x.rbx;
+; Line 406
+	*** 00022f	26 8b 47 10 		mov	ax,WORD PTR es:[bx+16]
+	*** 000233	89 46 f8 		mov	WORD PTR [bp-8],ax	;savbx
+;|*** 		regp->hregs.x.rbx = 0;
+; Line 407
+	*** 000236	26 c7 47 10 00 00 	mov	WORD PTR es:[bx+16],0
+;|*** 		ReallocatePages();
+; Line 408
+	*** 00023c	e8 00 00 		call	_ReallocatePages
+;|*** 		regp->hregs.x.rbx = savbx;
+; Line 409
+	*** 00023f	c4 1e 00 00 		les	bx,DWORD PTR _regp
+	*** 000243	8b 46 f8 		mov	ax,WORD PTR [bp-8]	;savbx
+	*** 000246	26 89 47 10 		mov	WORD PTR es:[bx+16],ax
+;|*** 		return;
+; Line 410
+	*** 00024a	5e 			pop	si
+	*** 00024b	5f 			pop	di
+	*** 00024c	c9 			leave	
+	*** 00024d	c3 			ret	
+					$I240:
+	*** 00024e	26 ff 77 14 		push	WORD PTR es:[bx+20]
+	*** 000252	e8 00 00 		call	_valid_handle
+	*** 000255	83 c4 02 		add	sp,2
+	*** 000258	8b f0 			mov	si,ax
+	*** 00025a	81 fe ff 0f 		cmp	si,4095
+	*** 00025e	74 66 			je	$EX236
+;|*** 	}
+;|*** 
+;|*** 	if((hp=valid_handle(handle)) == NULL_HANDLE)
+;|*** 		return;  /* invalid handle, error code set */
+; Line 414
+	*** 000260	c4 1e 00 00 		les	bx,DWORD PTR _regp
+	*** 000264	26 8a 47 14 		mov	al,BYTE PTR es:[bx+20]
+	*** 000268	2a e4 			sub	ah,ah
+	*** 00026a	6b d8 0a 		imul	bx,ax,10
+	*** 00026d	81 bf 00 00 ff 0f 	cmp	WORD PTR _save_map[bx],4095
+	*** 000273	74 0d 			je	$I244
+;|*** 	/*
+;|*** 	 * check for save area in use for this handle
+;|*** 	 */
+;|*** 	if( save_map[ (handle & 0x00FF) ].s_handle != (unsigned)NULL_HANDLE )
+;|*** 	{
+; Line 419
+;|*** 		setAH(SAVED_PAGE_DEALLOC);
+; Line 420
+	*** 000275	8b 1e 00 00 		mov	bx,WORD PTR _regp
+	*** 000279	26 c6 47 1d 86 		mov	BYTE PTR es:[bx+29],134
+;|*** 		return;
+; Line 421
+	*** 00027e	5e 			pop	si
+	*** 00027f	5f 			pop	di
+	*** 000280	c9 			leave	
+	*** 000281	c3 			ret	
+					$I244:
+	*** 000282	56 			push	si
+	*** 000283	e8 c6 fd 		call	_free_pages
+	*** 000286	83 c4 02 		add	sp,2
+;|*** 	}
+;|*** 
+;|*** 	free_pages(hp); 	      /*free the pages associated with handle*/
+;|*** 	hp->page_index = NULL_PAGE;   /*and then free the handle*/
+; Line 425
+	*** 000289	c7 04 ff ff 		mov	WORD PTR [si],-1
+;|*** 	hp->page_count = 0;	      /*bookkeeping*/
+; Line 426
+	*** 00028d	c7 44 02 00 00 		mov	WORD PTR [si+2],0
+;|*** 	Name = (long *)Handle_Name_Table[handle & 0xFF];
+; Line 427
+	*** 000292	c4 1e 00 00 		les	bx,DWORD PTR _regp
+	*** 000296	26 8a 47 14 		mov	al,BYTE PTR es:[bx+20]
+	*** 00029a	2a e4 			sub	ah,ah
+	*** 00029c	c1 e0 03 		shl	ax,3
+	*** 00029f	05 00 00 		add	ax,OFFSET _Handle_Name_Table
+	*** 0002a2	89 46 fc 		mov	WORD PTR [bp-4],ax	;Name
+;|*** 	*(Name+1) = *(Name) = 0L;     /* zero the eight byte name */
+; Line 428
+	*** 0002a5	8b d8 			mov	bx,ax
+	*** 0002a7	8b f8 			mov	di,ax
+	*** 0002a9	2b c0 			sub	ax,ax
+	*** 0002ab	99 			cwd	
+	*** 0002ac	89 05 			mov	WORD PTR [di],ax
+	*** 0002ae	89 55 02 		mov	WORD PTR [di+2],dx
+	*** 0002b1	89 47 04 		mov	WORD PTR [bx+4],ax
+	*** 0002b4	89 57 06 		mov	WORD PTR [bx+6],dx
+;|*** 	handle_count--; 	      /* one less active handle */
+; Line 429
+	*** 0002b7	ff 0e 00 00 		dec	WORD PTR _handle_count
+;|*** 
+;|*** /*	AutoUpdate();	/* update status of Auto mode */
+;|*** 	setAH((unsigned char)EMMstatus);	/* done */
+; Line 432
+	*** 0002bb	8b 1e 00 00 		mov	bx,WORD PTR _regp
+	*** 0002bf	a0 00 00 		mov	al,BYTE PTR _EMMstatus
+	*** 0002c2	26 88 47 1d 		mov	BYTE PTR es:[bx+29],al
+;|*** }
+; Line 433
+					$EX236:
+	*** 0002c6	5e 			pop	si
+	*** 0002c7	5f 			pop	di
+	*** 0002c8	c9 			leave	
+	*** 0002c9	c3 			ret	
+
+_DeallocatePages	ENDP
+;|*** #undef	handle 
+;|*** 	
+;|*** 
+;|*** /*
+;|***  * get emm version
+;|***  *	no parameters
+;|***  *
+;|***  * returns the version number of the emm driver
+;|***  *
+;|***  * 	05/06/88  ISP	No update needed for MEMM
+;|***  */
+;|*** GetEMMVersion()
+;|*** {
+; Line 446
+	PUBLIC	_GetEMMVersion
+_GetEMMVersion	PROC NEAR
+;|*** 	setAX( (EMMstatus<<8) | EMM_VERSION );
+; Line 447
+	*** 0002ca	c4 1e 00 00 		les	bx,DWORD PTR _regp
+	*** 0002ce	8a 26 00 00 		mov	ah,BYTE PTR _EMMstatus
+	*** 0002d2	b0 40 			mov	al,64
+	*** 0002d4	26 89 47 1c 		mov	WORD PTR es:[bx+28],ax
+;|*** }
+; Line 448
+	*** 0002d8	c3 			ret	
+	*** 0002d9	90 			nop	
+
+_GetEMMVersion	ENDP
+;|*** 
+;|*** /*
+;|***  * Get EMM handle count
+;|***  *	no parameters
+;|***  *
+;|***  * return the number of active EMM handles
+;|***  *
+;|***  * 	05/06/88  ISP 	No update needed for MEMM
+;|***  */
+;|*** GetEMMHandleCount()
+;|*** {
+; Line 459
+	PUBLIC	_GetEMMHandleCount
+_GetEMMHandleCount	PROC NEAR
+;|*** 	setBX(handle_count);
+; Line 460
+	*** 0002da	c4 1e 00 00 		les	bx,DWORD PTR _regp
+	*** 0002de	a1 00 00 		mov	ax,_handle_count
+	*** 0002e1	26 89 47 10 		mov	WORD PTR es:[bx+16],ax
+;|*** 	setAH((unsigned char)EMMstatus);
+; Line 461
+	*** 0002e5	a0 00 00 		mov	al,BYTE PTR _EMMstatus
+	*** 0002e8	26 88 47 1d 		mov	BYTE PTR es:[bx+29],al
+;|*** }
+; Line 462
+	*** 0002ec	c3 			ret	
+	*** 0002ed	90 			nop	
+
+_GetEMMHandleCount	ENDP
+;|*** 
+;|*** /*
+;|***  * Get EMM handle pages
+;|***  *	parameters:
+;|***  *		dx -- handle
+;|***  *
+;|***  * return the number of pages allocated to specified handle in BX
+;|***  *
+;|***  *	05/09/88  ISP	No update needed for MEMM
+;|***  */
+;|*** GetEMMHandlePages()
+;|*** {
+; Line 474
+	PUBLIC	_GetEMMHandlePages
+_GetEMMHandlePages	PROC NEAR
+	*** 0002ee	c8 02 00 00 		enter	WORD PTR 2,0
+	*** 0002f2	56 			push	si
+;	register si = hp
+;|*** #define	handle	((unsigned)regp->hregs.x.rdx)
+;|*** 	register struct handle_ptr *hp;
+;|*** 
+;|*** 	if((hp=valid_handle(handle))==NULL_HANDLE)	/*valid handle? */
+; Line 478
+	*** 0002f3	c4 1e 00 00 		les	bx,DWORD PTR _regp
+	*** 0002f7	26 ff 77 14 		push	WORD PTR es:[bx+20]
+	*** 0002fb	e8 00 00 		call	_valid_handle
+	*** 0002fe	83 c4 02 		add	sp,2
+	*** 000301	8b f0 			mov	si,ax
+	*** 000303	81 fe ff 0f 		cmp	si,4095
+	*** 000307	74 12 			je	$EX250
+;|*** 		return;				/* no */
+; Line 479
+	*** 000309	c4 1e 00 00 		les	bx,DWORD PTR _regp
+	*** 00030d	8b 44 02 		mov	ax,WORD PTR [si+2]
+	*** 000310	26 89 47 10 		mov	WORD PTR es:[bx+16],ax
+;|*** 	setBX(hp->page_count);
+;|*** 	setAH((unsigned char)EMMstatus);
+; Line 481
+	*** 000314	a0 00 00 		mov	al,BYTE PTR _EMMstatus
+	*** 000317	26 88 47 1d 		mov	BYTE PTR es:[bx+29],al
+;|*** }
+; Line 482
+					$EX250:
+	*** 00031b	5e 			pop	si
+	*** 00031c	c9 			leave	
+	*** 00031d	c3 			ret	
+
+_GetEMMHandlePages	ENDP
+;|*** 
+;|*** /*
+;|***  * Get All EMM Handle Pages
+;|***  *	parameters:
+;|***  *		es:di -- userptr
+;|***  *
+;|***  * fill out array of handle/size pairs
+;|***  *
+;|***  * 05/09/88  ISP    Updated for MEMM (just removed upper byte of handle)
+;|***  */
+;|*** GetAllEMMHandlePages()
+;|*** {
+; Line 494
+	PUBLIC	_GetAllEMMHandlePages
+_GetAllEMMHandlePages	PROC NEAR
+	*** 00031e	c8 08 00 00 		enter	WORD PTR 8,0
+	*** 000322	57 			push	di
+	*** 000323	56 			push	si
+;	register si = hp
+;	register di = h_index
+;	u_ptr = -6
+;|*** 	unsigned far *u_ptr;
+;|*** 	register struct handle_ptr *hp;
+;|*** 	register unsigned h_index;
+;|*** 
+;|*** 	/*
+;|*** 	 * scan handle table and for each valid entry,
+;|*** 	 * copy handle and size to user array
+;|*** 	 */
+;|*** 	u_ptr = dest_addr();
+; Line 503
+	*** 000324	e8 00 00 		call	_dest_addr
+	*** 000327	89 46 fa 		mov	WORD PTR [bp-6],ax	;u_ptr
+	*** 00032a	89 56 fc 		mov	WORD PTR [bp-4],dx
+;|*** 
+;|*** 	hp=handle_table;
+; Line 505
+	*** 00032d	be 00 00 		mov	si,OFFSET _handle_table
+;|*** 	for(h_index=0;h_index<handle_table_size;h_index++)   
+; Line 506
+	*** 000330	2b ff 			sub	di,di
+	*** 000332	eb 20 			jmp	SHORT $F258
+					$FC259:
+;|*** 	{
+; Line 507
+;|*** 		/* scan table for entries */
+;|*** 		if(hp->page_index != NULL_PAGE)	/* valid entry? */
+; Line 509
+	*** 000334	83 3c ff 		cmp	WORD PTR [si],-1
+	*** 000337	74 17 			je	$I261
+;|*** 		{
+; Line 510
+;|*** 			*u_ptr++ = h_index;   /* handle */
+; Line 511
+	*** 000339	c4 5e fa 		les	bx,DWORD PTR [bp-6]	;u_ptr
+	*** 00033c	83 46 fa 02 		add	WORD PTR [bp-6],2	;u_ptr
+	*** 000340	26 89 3f 		mov	WORD PTR es:[bx],di
+;|*** 			*u_ptr++ = hp->page_count;	/*# of pgs for handle*/
+; Line 512
+	*** 000343	8b 5e fa 		mov	bx,WORD PTR [bp-6]	;u_ptr
+	*** 000346	83 46 fa 02 		add	WORD PTR [bp-6],2	;u_ptr
+	*** 00034a	8b 44 02 		mov	ax,WORD PTR [si+2]
+	*** 00034d	26 89 07 		mov	WORD PTR es:[bx],ax
+;|*** 		}
+; Line 513
+;|*** 		hp++;				/* next entry */
+; Line 514
+					$I261:
+	*** 000350	83 c6 04 		add	si,4
+;|*** 	}
+; Line 515
+	*** 000353	47 			inc	di
+					$F258:
+	*** 000354	39 3e 00 00 		cmp	_handle_table_size,di
+	*** 000358	77 da 			ja	$FC259
+;|*** 	setBX(handle_count);			/* bx <-- handle count */
+; Line 516
+	*** 00035a	c4 1e 00 00 		les	bx,DWORD PTR _regp
+	*** 00035e	a1 00 00 		mov	ax,_handle_count
+	*** 000361	26 89 47 10 		mov	WORD PTR es:[bx+16],ax
+;|*** 	setAH((unsigned char)EMMstatus);
+; Line 517
+	*** 000365	a0 00 00 		mov	al,BYTE PTR _EMMstatus
+	*** 000368	26 88 47 1d 		mov	BYTE PTR es:[bx+29],al
+;|*** }
+; Line 518
+	*** 00036c	5e 			pop	si
+	*** 00036d	5f 			pop	di
+	*** 00036e	c9 			leave	
+	*** 00036f	c3 			ret	
+
+_GetAllEMMHandlePages	ENDP
+;|*** 
+;|*** /*
+;|***  * Get Page Mapping Register I/O Port Array
+;|***  *	parameters:
+;|*** 		es:di -- user array
+;|***  *
+;|***  *  05/09/88  ISP   Function not supported
+;|***  */
+;|*** GetPageMappingRegisterIOArray() 
+;|*** {
+; Line 528
+	PUBLIC	_GetPageMappingRegisterIOArray
+_GetPageMappingRegisterIOArray	PROC NEAR
+;|*** 
+;|*** 	setAH(INVALID_FUNCTION);
+; Line 530
+	*** 000370	c4 1e 00 00 		les	bx,DWORD PTR _regp
+	*** 000374	26 c6 47 1d 84 		mov	BYTE PTR es:[bx+29],132
+;|*** }
+; Line 531
+	*** 000379	c3 			ret	
+
+_GetPageMappingRegisterIOArray	ENDP
+;|*** 
+;|*** /*
+;|***  * Get Logical to Physical Page Translation Array
+;|***  *	parameters:
+;|***  *		es:di -- pointer to user array
+;|***  *		dx ----- EMM handle
+;|***  *
+;|***  *  05/09/88  ISP   Function not supported
+;|***  */
+;|*** GetLogicalToPhysicalPageTrans()
+;|*** {
+; Line 542
+	PUBLIC	_GetLogicalToPhysicalPageTrans
+_GetLogicalToPhysicalPageTrans	PROC NEAR
+;|*** 	setAH(INVALID_FUNCTION);
+; Line 543
+	*** 00037a	c4 1e 00 00 		les	bx,DWORD PTR _regp
+	*** 00037e	26 c6 47 1d 84 		mov	BYTE PTR es:[bx+29],132
+;|*** }
+; Line 544
+	*** 000383	c3 			ret	
+
+_GetLogicalToPhysicalPageTrans	ENDP
+_TEXT	ENDS
+END
