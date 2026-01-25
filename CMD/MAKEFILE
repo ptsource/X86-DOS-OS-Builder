@@ -5,6 +5,9 @@ make	=nmake
 all:
 	cd command
 	$(make)
+	cd ..\compress
+	del *.exe
+	$(make)
 	cd ..\attrib
 	$(make)
 	cd ..\assign
