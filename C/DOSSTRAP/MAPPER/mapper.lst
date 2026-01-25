@@ -1,0 +1,198 @@
+CurrentDTA........F_FIRST           dosallocseg.......ALLOCSEG
+dosbeep...........BEEP              doscasemap........CASEMAP
+DosChDir..........CHDIR             doschgfileptr.....LSEEK
+DosClose..........CLOSE             doscwait..........CWAIT
+DosDelete.........DELETE            dosdevconfig......DEVCONFG
+dosdevioctl.......IOCTL             doserror..........ERROR
+dosexecpgm........EXECPGM           DosExecPgmCalled..EXECPGM
+DosExecPgmReturnCode..EXECPGM       dosexit...........EXIT
+DosFindClose......F_CLOSE           DosFindFirst......F_FIRST
+DosFindNext.......F_NEXT            dosfreeseg........FREESEG
+dosgetctryinfo....GETCNTRY          dosgetdatetime....GET_TOD
+DosGetDBCSEv......DBCS              dosgetmachinemode..GMACHMOD
+dosgetmessage.....GETMSG            dosgetversion.....GETVER
+dosmkdir..........MKDIR             DosOpen...........OPEN
+dosputmessage.....PUTMSG            dosqcurdir........QCURDIR
+dosqcurdisk.......QCURDSK           dosQfileinfo......QFILEINF
+dosqfilemode......QFILEMOD          DosQFsInfo........QFSINFO
+dosqhandtype......QHANDTYP          dosqverify........QVERIFY
+dosread...........READ              dosreallocseg.....REALLSEG
+dosrmdir..........RMDIR             dosselectdisk.....SEL_DISK
+dossetctrycode....SCNTRY            dossetdatetime....SET_TOD
+dossetfileinfo....SFILEINF          dossetfilemode....SFILEMOD
+DosSetFsInfo......SETFSINF          dossetsighandler..SIGHAND
+dossetverify......SVERIFY           doswrite..........WRITE
+FileAttributeTable..OPEN            FindDTAs..........F_FIRST
+FindHandles.......F_FIRST           KbdBitMask........KBDGSTAT
+kbdcharin.........CHARIN            kbdflushbuffer....FLUSHBUF
+kbdgetstatus......KBDGSTAT          KbdInterimCharFlags..KBDGSTAT
+kbdsetstatus......KBDSSTAT          KbdTurnAroundCharacter..KBDGSTAT
+ReturnBufferSave..F_FIRST           ReturnLengthToGo..F_FIRST
+savedkbdinput.....FLUSHBUF          SaveDTA...........F_FIRST
+SaveDTAFlag.......F_FIRST           SaveDTAOffset.....F_FIRST
+SaveDTASegment....F_FIRST           SearchCount.......F_FIRST
+set_int24_vector..setint24          vioscrollup.......SCROLLUP
+viosetcurpos......SCURPOS           viowrtcharstratt..WCHSTRA
+
+
+CHDIR             Offset: 00000010H  Code and data size: 2cH
+  DosChDir        
+
+GETVER            Offset: 000000a0H  Code and data size: 29H
+  dosgetversion   
+
+F_FIRST           Offset: 00000130H  Code and data size: 2fcH
+  CurrentDTA        DosFindFirst      FindDTAs          FindHandles
+  ReturnBufferSave  ReturnLengthToGo  SaveDTA           SaveDTAFlag
+  SaveDTAOffset     SaveDTASegment    SearchCount     
+
+SET_TOD           Offset: 000006d0H  Code and data size: 4dH
+  dossetdatetime  
+
+WRITE             Offset: 00000780H  Code and data size: 31H
+  doswrite        
+
+BEEP              Offset: 00000810H  Code and data size: 5dH
+  dosbeep         
+
+MKDIR             Offset: 000008d0H  Code and data size: 26H
+  dosmkdir        
+
+EXIT              Offset: 00000950H  Code and data size: 2cH
+  dosexit         
+
+DELETE            Offset: 000009e0H  Code and data size: 26H
+  DosDelete       
+
+GETCNTRY          Offset: 00000a70H  Code and data size: 6dH
+  dosgetctryinfo  
+
+F_CLOSE           Offset: 00000b70H  Code and data size: 3dH
+  DosFindClose    
+
+OPEN              Offset: 00000c60H  Code and data size: 1e2H
+  DosOpen           FileAttributeTable                
+
+READ              Offset: 00000e50H  Code and data size: 31H
+  dosread         
+
+RMDIR             Offset: 00000ee0H  Code and data size: 26H
+  dosrmdir        
+
+QCURDIR           Offset: 00000f60H  Code and data size: dfH
+  dosqcurdir      
+
+QCURDSK           Offset: 00001050H  Code and data size: dcH
+  dosqcurdisk     
+
+QVERIFY           Offset: 00001240H  Code and data size: 27H
+  dosqverify      
+
+QFILEMOD          Offset: 000012d0H  Code and data size: 31H
+  dosqfilemode    
+
+SVERIFY           Offset: 00001370H  Code and data size: 2dH
+  dossetverify    
+
+SFILEMOD          Offset: 00001400H  Code and data size: 2cH
+  dossetfilemode  
+
+LSEEK             Offset: 000014a0H  Code and data size: 38H
+  doschgfileptr   
+
+SFILEINF          Offset: 00001540H  Code and data size: 30H
+  dossetfileinfo  
+
+CLOSE             Offset: 00001610H  Code and data size: 2dH
+  DosClose        
+
+ALLOCSEG          Offset: 000016a0H  Code and data size: 4aH
+  dosallocseg     
+
+FREESEG           Offset: 00001750H  Code and data size: 2cH
+  dosfreeseg      
+
+SEL_DISK          Offset: 000017e0H  Code and data size: 25H
+  dosselectdisk   
+
+QFSINFO           Offset: 00001870H  Code and data size: a6H
+  DosQFsInfo      
+
+F_NEXT            Offset: 000019d0H  Code and data size: 145H
+  DosFindNext     
+
+GETMSG            Offset: 00001cb0H  Code and data size: 76eH
+  dosgetmessage   
+
+GET_TOD           Offset: 00002680H  Code and data size: 44H
+  dosgetdatetime  
+
+CHARIN            Offset: 00002730H  Code and data size: 7cH
+  kbdcharin       
+
+FLUSHBUF          Offset: 00002830H  Code and data size: 3cH
+  kbdflushbuffer    savedkbdinput   
+
+DEVCONFG          Offset: 000028f0H  Code and data size: 94H
+  dosdevconfig    
+
+REALLSEG          Offset: 000029f0H  Code and data size: 3cH
+  dosreallocseg   
+
+PUTMSG            Offset: 00002a90H  Code and data size: 2cH
+  dosputmessage   
+
+EXECPGM           Offset: 00002b20H  Code and data size: 71H
+  dosexecpgm        DosExecPgmCalled  DosExecPgmReturnCode
+
+QHANDTYP          Offset: 00002c90H  Code and data size: 39H
+  dosqhandtype    
+
+CWAIT             Offset: 00002d30H  Code and data size: 3fH
+  doscwait        
+
+KBDGSTAT          Offset: 00002e20H  Code and data size: 48H
+  KbdBitMask        kbdgetstatus      KbdInterimCharFlags
+  KbdTurnAroundCharacter            
+
+KBDSSTAT          Offset: 00002f50H  Code and data size: 91H
+  kbdsetstatus    
+
+CASEMAP           Offset: 000030d0H  Code and data size: 36H
+  doscasemap      
+
+DBCS              Offset: 00003170H  Code and data size: 33H
+  DosGetDBCSEv    
+
+IOCTL             Offset: 00003200H  Code and data size: 49H
+  dosdevioctl     
+
+SIGHAND           Offset: 000032b0H  Code and data size: acH
+  dossetsighandler
+
+ERROR             Offset: 00003460H  Code and data size: a0H
+  doserror        
+
+setint24          Offset: 000035c0H  Code and data size: 4eH
+  set_int24_vector
+
+QFILEINF          Offset: 000036b0H  Code and data size: 95H
+  dosQfileinfo    
+
+SCURPOS           Offset: 00003800H  Code and data size: 4dH
+  viosetcurpos    
+
+SCROLLUP          Offset: 000038b0H  Code and data size: 6dH
+  vioscrollup     
+
+WCHSTRA           Offset: 00003980H  Code and data size: a4H
+  viowrtcharstratt
+
+SCNTRY            Offset: 00003a90H  Code and data size: 36H
+  dossetctrycode  
+
+SETFSINF          Offset: 00003b30H  Code and data size: 6fH
+  DosSetFsInfo    
+
+GMACHMOD          Offset: 00003c20H  Code and data size: 1dH
+  dosgetmachinemode                 
