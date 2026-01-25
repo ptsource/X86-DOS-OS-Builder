@@ -1,0 +1,25 @@
+#************************** makefile for cmd\... ***************************
+
+dos	=..\..\dos
+inc	=..\..\inc
+hinc	=..\..\h
+
+#
+#######################	dependencies begin here. #########################
+
+
+OBJ=compress.obj compusi.obj compapi.obj
+
+
+all: compress.exe
+
+compress.exe :
+    cl -c -AS -Ox -DNDEBUG -DMSC compress.c compusi.c compapi.c
+    link @compress.lnk
+    upx --8086 COMPRESS.EXE
+    del compapi.OBJ
+    del compress.OBJ
+    del compusi.OBJ
+
+
+$(OBJ): compress.h compress.fns
