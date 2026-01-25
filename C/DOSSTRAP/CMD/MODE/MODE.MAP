@@ -1,0 +1,780 @@
+LINK : warning L4021: no stack segment
+
+ Start  Stop   Length Name                   Class
+ 00000H 05886H 05887H PRINTF_CODE            
+ 05890H 05A8FH 00200H ZSEG                   
+
+ Origin   Group
+ 0000:0   DGROUP
+
+  Address         Publics by Name
+
+ 0000:1A85       $M_CLS_1
+ 0000:1EE7       $M_CLS_2
+ 0000:10DE       $M_GET_MSG_ADDRESS
+ 0000:1F0C       $M_MSGSERV_1
+ 0000:1F2D       $M_MSGSERV_2
+ 0000:0EFF       $M_RT
+ 0000:009A  Abs  all_con_status
+ 0000:0012  Abs  ALT_SELECT
+ 0000:30F5       analyze_and_invoke
+ 0000:0ADC       ANSI_not_loaded
+ 0000:07C4       baud_19200
+ 0000:4242       BAUD_equal
+ 0000:2680       baud_index
+ 0000:0AE8       Baud_rate_required
+ 0000:0088  Abs  bogus
+ 0000:5890       buf
+ 0000:0002  Abs  busy_retry_active
+ 0000:0080  Abs  busy_status
+ 0000:1FCC       BW40
+ 0000:000B  Abs  BW40_item_tag
+ 0000:2021       BW80
+ 0000:000C  Abs  BW80_item_tag
+ 0000:001B  Abs  B_item_tag
+ 0000:45FF       B_str
+ 0000:0920       CANT_SHIFT
+ 0000:2243       CHECK_BUFF
+ 0000:247B       CHK_FOR_P
+ 0000:003E  Abs  CLOSE
+ 0000:20CB       CO40
+ 0000:000D  Abs  CO40_item_tag
+ 0000:2120       CO80
+ 0000:000E  Abs  CO80_item_tag
+ 0000:40E5       codepage_index_holder
+ 0000:001E  Abs  codepage_item_tag
+ 0000:0099  Abs  codepage_prepare
+ 0000:0095  Abs  codepage_prepared_status
+ 0000:0098  Abs  codepage_refresh
+ 0000:0097  Abs  codepage_select
+ 0000:0094  Abs  codepage_selected_status
+ 0000:0096  Abs  codepage_status
+ 0000:0000  Abs  COLOR_ON_IT
+ 0000:4300       COLS_equal
+ 0000:42F7       columns_equal
+ 0000:0A94       COLUMNS_equal_msg
+ 0000:2260       columns_holder
+ 0000:0023  Abs  columns_item_tag
+ 0000:076B       COLUMNS_ptr
+ 0000:0770       columns_type
+ 0000:0878       COM1_or_COM2
+ 0000:4627       COM1_str
+ 0000:462C       COM2_str
+ 0000:4631       COM3_str
+ 0000:4636       COM4_str
+ 0000:009C  Abs  COMX
+ 0000:492B       com_keyword_case
+ 0000:4899       com_keyword_or_baud_case
+ 0000:0093  Abs  com_status
+ 0000:50B9       con_keyword_case
+ 0000:4FCD       con_kwrd_status_or_cp_case
+ 0000:463B       CON_str
+ 0000:095C       CPMSG1
+ 0000:09C8       CPMSG10
+ 0000:09D4       CPMSG12
+ 0000:09E0       CPMSG13
+ 0000:0BA8       cpmsg13_act
+ 0000:0BB4       cpmsg13_sys
+ 0000:09EC       CPMSG14
+ 0000:09F8       CPMSG15
+ 0000:0A04       CPMSG16
+ 0000:0A10       CPMSG17
+ 0000:0B9C       cpmsg17_writ
+ 0000:0A1C       CPMSG18
+ 0000:0A28       CPMSG19
+ 0000:0968       CPMSG2
+ 0000:0A34       CPMSG20
+ 0000:0A40       CPMSG21
+ 0000:0974       CPMSG3
+ 0000:0980       CPMSG4
+ 0000:098C       CPMSG5
+ 0000:0998       CPMSG6
+ 0000:09A4       CPMSG7
+ 0000:09B0       CPMSG8
+ 0000:0B54       CPMSG8_HW
+ 0000:0B60       cpmsg8_pr
+ 0000:09BC       CPMSG9
+ 0000:073F       CPMSGLST13CP
+ 0000:074A       CPMSGLST13TYP
+ 0000:06F2       CPMSGLST2DEV
+ 0000:084F       CPMSGLST6CP
+ 0000:06FD       CPMSGLST6DEV
+ 0000:0713       CPMSGLST7DEV
+ 0000:0851       CPMSGLST9CP
+ 0000:0B78       cpmsgxx_prep
+ 0000:0B6C       cpmsgxx_query
+ 0000:0B90       cpmsgxx_refresh
+ 0000:0B84       cpmsgxx_select
+ 0000:2F63       cp_cb
+ 0000:0A4C       CRLF
+ 0000:0311       CTRL_ST
+ 0000:4AAD       databits_or_null_case
+ 0000:2682       data_bits_index
+ 0000:4267       DATA_equal
+ 0000:2A1D       DBCS_headr
+ 0000:42C8       DELAY_equal
+ 0000:0781       delay_ptr
+ 0000:0786       delay_type
+ 0000:42C3       DEL_equal
+ 0000:2B99       DES_START
+ 0000:40C6       des_start_packet
+ 0000:0001  Abs  DES_STRT_FL_CART
+ 0000:07B8       device
+ 0000:40EA       device_name
+ 0000:40EC       device_type
+ 0000:079D       dev_name_size
+ 0000:0002  Abs  DEV_OPEN_MODE
+ 0000:04EA       display_printer_reroute_status
+ 0000:2E98       DO_GENERIC_IOCTL
+ 0000:2FA3       DO_IOCTL0C
+ 0000:2B35       DO_prepare
+ 0000:2D7C       do_status
+ 0000:4EA8       DUMMY1
+ 0000:2CD1       dummy10
+ 0000:3630       DUMMY3
+ 0000:5758       dummy4
+ 0000:52E6       dummy5
+ 0000:2BE0       dummy8
+ 0000:3473       dummy9
+ 0000:0010  Abs  EGA_INFO
+ 0000:000F  Abs  eighty_item_tag
+ 0000:45CB       eighty_str
+ 0000:0038  Abs  eight_item_tag
+ 0000:2483       ELSE01
+ 0000:0DFC       ENDIF03
+ 0000:22B6       ENDIF04
+ 0000:2396       END_CHECK_NAME
+ 0000:0890       ERR1
+ 0000:089C       ERR2
+ 0000:0001  Abs  error_retry_active
+ 0000:0029  Abs  error_status
+ 0000:0082  Abs  even_item_tag
+ 0000:001C  Abs  E_item_tag
+ 0000:4642       E_str
+ 0000:0081       first_char_in_command_line
+ 0000:52CF       first_parm_case
+ 0000:0640       first_sublist
+ 0000:0A7C       five_char_underline
+ 0000:0035  Abs  five_item_tag
+ 0000:0061  Abs  FIXUP
+ 0000:0323       FLAG
+ 0000:005C  Abs  fourtyeighthundred_item_tag
+ 0000:45EF       fourtyeighthundred_str
+ 0000:0010  Abs  fourty_item_tag
+ 0000:45C2       fourty_str
+ 0000:0A70       four_char_underline
+ 0000:0AC4       function_not_supported
+ 0000:3085       get_device_retry_type
+ 0000:059A       get_machine_type
+ 0000:219D       GET_VIDEO_INFO
+ 0000:0BC2       HANDLE_40_OR_80
+ 0000:064D       illegal_device_ptr
+ 0000:0324       INDEX
+ 0000:0B30       infinite
+ 0000:0092  Abs  initialize_com_port
+ 0000:0091  Abs  initialize_printer_port
+ 0000:338A       initialize_printer_port_case
+ 0000:2F00       initialize_sublists
+ 0000:08D8       INITMSG
+ 0000:0938       Invalid_number_of_parameters
+ 0000:092C       Invalid_parameter
+ 0000:0854       Invalid_switch
+ 0000:2F79       IOCTL0C_data_block
+ 0000:0326       IS_LOCAL
+ 0000:0058  Abs  keyword
+ 0000:0B3C       left
+ 0000:0B18       leftmost
+ 0000:0005  Abs  len_COMX_str
+ 0000:0004  Abs  len_CON_str
+ 0000:0005  Abs  len_LPTX_str
+ 0000:42E7       LINES_equal
+ 0000:0A88       lines_equal_msg
+ 0000:0025  Abs  lines_item_tag
+ 0000:4D46       li_or_null_case
+ 0000:0327       LOADED_YET
+ 0000:0328       LOCAL_NAME
+ 0000:0A64       long_underline
+ 0000:022C       lpt1_retry_type
+ 0000:464B       LPT1_str
+ 0000:4650       LPT2_str
+ 0000:4655       LPT3_str
+ 0000:0381       LPTNO
+ 0000:009B  Abs  LPTX
+ 0000:002A  Abs  L_item_tag
+ 0000:0338       machine_type
+ 0000:1F37       MAIN
+ 0000:0086  Abs  mark_item_tag
+ 0000:009A  Abs  max_request_type
+ 0000:0322       MODE
+ 0000:2916       MODECOM
+ 0000:2A7C       MODECP
+ 0000:29BC       MODECP00
+ 0000:03AB       MODEECHO
+ 0000:0425       MODEECNO
+ 0000:0552       MODELENG
+ 0000:0272       MODELOAD
+ 0000:2270       MODEPRIN
+ 0000:0103       MODETO
+ 0000:24A0       modify_resident_code
+ 0000:2076       MONO
+ 0000:0011  Abs  MONO_item_tag
+ 0000:0884       MOVED_MSG
+ 0000:0060       move_destination
+ 0000:0944       net_error
+ 0000:40F2       new_com_initialize
+ 0000:0125  Abs  NEW_PTSFLAG
+ 0000:012C  Abs  NEW_SCRNTABL
+ 0000:033A       NEW_VIDEO_PARMS_OFFSET
+ 0000:033C       NEW_VIDEO_PARMS_SEGMENT
+ 0000:005E  Abs  nineteentwohundred_item_tag
+ 0000:45F9       nineteentwohundred_str
+ 0000:005D  Abs  ninetysixhundred_item_tag
+ 0000:45F4       ninetysixhundred_str
+ 0000:0339       NOERROR
+ 0000:0084  Abs  NONE_item_tag
+ 0000:4695       none_str
+ 0000:0B24       noretry
+ 0000:07CC       NOTREDPT
+ 0000:0908       NOTREMSG
+ 0000:0950       not_supported
+ 0000:078C       not_supported_ptr
+ 0000:0000  Abs  no_retry_active
+ 0000:0000  Abs  no_retry_flag
+ 0000:08E4       NUMBERS
+ 0000:0022  Abs  number_of_sublists
+ 0000:0083  Abs  odd_item_tag
+ 0000:07CD       offending_parameter
+ 0000:0642       offending_parameter_ptr
+ 0000:007B  Abs  OFFPTS
+ 0000:0183       OFFRETRY
+ 0000:0029  Abs  OFF_item_tag
+ 0000:46A0       off_str
+ 0000:0090  Abs  old_initialize_printer_port
+ 0000:3343       old_initialize_printer_port_cas
+ 0000:008F  Abs  old_video_mode_set
+ 0000:33E7       old_video_mode_set_case
+ 0000:0057  Abs  onefifty_item_tag
+ 0000:45D9       onefifty_str
+ 0000:0055  Abs  oneten_item_tag
+ 0000:45D1       oneten_str
+ 0000:0056  Abs  onethirtytwo_item_tag
+ 0000:002E  Abs  one_item_tag
+ 0000:002F  Abs  one_point_five_item_tag
+ 0000:4591       one_point_five_str
+ 0000:0028  Abs  ON_item_tag
+ 0000:46A4       on_str
+ 0000:003D  Abs  OPEN
+ 0000:00F9  Abs  P14_model_byte
+ 0000:4251       parity_equal
+ 0000:2684       parity_index
+ 0000:4A5F       parity_or_null_case
+ 0000:0316       PARM1
+ 0000:0320       PARM2
+ 0000:0321       PARM3
+ 0000:40F4       parms_form
+ 0000:2F72       parm_list_holder
+ 0000:46CD       parm_lst
+ 0000:4829       parse_parameters
+ 0000:5810       PARSE_PARM
+ 0000:07B9       pbaud
+ 0000:0679       PBAUD_PTR
+ 0000:07C0       pdata
+ 0000:2A01       PK
+ 0000:07BF       pparity
+ 0000:0684       pparity_ptr
+ 0000:07C3       pparm
+ 0000:0085  Abs  PREPARE
+ 0000:001F  Abs  prepare_item_tag
+ 0000:2265       printer_no
+ 0000:008E  Abs  printer_reroute
+ 0000:34CB       printer_reroute_case
+ 0000:008D  Abs  printer_status
+ 0000:34EE       printer_status_case
+ 0000:2F0F       PRINTF
+ 0000:0408  Abs  PRINTR
+ 0000:4B6A       prn_kw_status_cp_cl_null_case
+ 0000:07C1       pstop
+ 0000:069A       pstop_ptr
+ 0000:08B4       PT132
+ 0000:07B7       PT132N
+ 0000:08A8       PT80
+ 0000:07B6       PT80N
+ 0000:08C0       PTLINES
+ 0000:0228       ptsflag1
+ 0000:4B43       P_case
+ 0000:0019  Abs  P_item_tag
+ 0000:08CC       RATEMSG
+ 0000:0AA0       rate_and_delay_together
+ 0000:42D8       rate_equal
+ 0000:0776       rate_ptr
+ 0000:077B       rate_type
+ 0000:0003  Abs  ready_retry_active
+ 0000:0090  Abs  ready_status
+ 0000:07CB       REDCOM
+ 0000:08FC       REDIRMSG
+ 0000:07CA       REDPT
+ 0000:0084  Abs  REFRESH
+ 0000:033E       REMOTE_DEV
+ 0000:40F8       request_type
+ 0000:0AD0       Required_font_not_loaded
+ 0000:40F9       reroute_requested
+ 0000:0018  Abs  rescode_length
+ 0000:0229       resflag2
+ 0000:0530  Abs  RESSEG
+ 0000:017D       res_com_retry_type
+ 0000:017D       RES_MODEFLAG
+ 0000:0914       RETPARTO
+ 0000:0AF4       RETRY_equal
+ 0000:4285       retry_equal_str
+ 0000:2688       retry_index
+ 0000:001A  Abs  retry_item_tag
+ 0000:40FA       retry_requested
+ 0000:07A2       RETRY_type_ptr
+ 0000:0B48       right
+ 0000:0B0C       rightmost
+ 0000:0760       row_ptr
+ 0000:0765       row_type
+ 0000:001D  Abs  R_item_tag
+ 0000:46AD       R_str
+ 0000:533C       screen_modes
+ 0000:2960       SCRNTAB
+ 0000:022F       SCRNTABL
+ 0000:519E       sd_or_dl_case
+ 0000:5148       sd_or_dl_or_eol_case
+ 0000:2307       SEE_IF_REDIRECTED
+ 0000:0086  Abs  SELECT
+ 0000:0020  Abs  select_item_tag
+ 0000:0400  Abs  SERIAL_BASE
+ 0000:2773       setcom
+ 0000:268A       setto
+ 0000:4791       setup_invalid_parameter
+ 0000:2ECE       setup_packet_for_DBCS
+ 0000:008C  Abs  set_con_features
+ 0000:255B       set_retry_type
+ 0000:0037  Abs  seven_item_tag
+ 0000:08F0       SHIFT_MSG
+ 0000:0CA0       SHIFT_SCREEN
+ 0000:0059  Abs  sixhundred_item_tag
+ 0000:45E1       sixhundred_str
+ 0000:0036  Abs  six_item_tag
+ 0000:0085  Abs  space_item_tag
+ 0000:0A58       status_for_device
+ 0000:008B  Abs  status_for_everything
+ 0000:0797       stat_dev_ptr
+ 0000:0370       stay_resident
+ 0000:4AFB       stopbits_or_null_case
+ 0000:2686       stop_bits_index
+ 0000:4276       stop_equal
+ 0000:06E5       sublist_cant_shift
+ 0000:0732       sublist_cpmsg10
+ 0000:0753       sublist_CPMSG17
+ 0000:071C       sublist_cpmsg8
+ 0000:06DA       sublist_retparto
+ 0000:06AE       sublist_shift_msg
+ 0000:0371       submodel_byte
+ 0000:0B00       syntax_error
+ 0000:07AD       syntax_error_ptr
+ 0000:1206       SYSDISPMSG
+ 0000:10C2       SYSGETMSG
+ 0000:37E8       SYSPARSE
+ 0000:0058  Abs  threehundred_item_tag
+ 0000:45DD       threehundred_str
+ 0000:008A  Abs  turn_off_reroute
+ 0000:005A  Abs  twelvehundred_item_tag
+ 0000:45E5       twelvehundred_str
+ 0000:005B  Abs  twentyfourhundred_item_tag
+ 0000:45EA       twentyfourhundred_str
+ 0000:0030  Abs  two_item_tag
+ 0000:2F41       TYPAMAT
+ 0000:002B  Abs  T_item_tag
+ 0000:00FF  Abs  Utility_Msg_Class
+ 0000:011C       VECTOR14
+ 0000:0188       VECTOR17
+ 0000:0382       VERIFY
+
+  Address         Publics by Value
+
+ 0000:0000  Abs  COLOR_ON_IT
+ 0000:0000  Abs  no_retry_flag
+ 0000:0000  Abs  no_retry_active
+ 0000:0001  Abs  DES_STRT_FL_CART
+ 0000:0001  Abs  error_retry_active
+ 0000:0002  Abs  busy_retry_active
+ 0000:0002  Abs  DEV_OPEN_MODE
+ 0000:0003  Abs  ready_retry_active
+ 0000:0004  Abs  len_CON_str
+ 0000:0005  Abs  len_LPTX_str
+ 0000:0005  Abs  len_COMX_str
+ 0000:000B  Abs  BW40_item_tag
+ 0000:000C  Abs  BW80_item_tag
+ 0000:000D  Abs  CO40_item_tag
+ 0000:000E  Abs  CO80_item_tag
+ 0000:000F  Abs  eighty_item_tag
+ 0000:0010  Abs  EGA_INFO
+ 0000:0010  Abs  fourty_item_tag
+ 0000:0011  Abs  MONO_item_tag
+ 0000:0012  Abs  ALT_SELECT
+ 0000:0018  Abs  rescode_length
+ 0000:0019  Abs  P_item_tag
+ 0000:001A  Abs  retry_item_tag
+ 0000:001B  Abs  B_item_tag
+ 0000:001C  Abs  E_item_tag
+ 0000:001D  Abs  R_item_tag
+ 0000:001E  Abs  codepage_item_tag
+ 0000:001F  Abs  prepare_item_tag
+ 0000:0020  Abs  select_item_tag
+ 0000:0022  Abs  number_of_sublists
+ 0000:0023  Abs  columns_item_tag
+ 0000:0025  Abs  lines_item_tag
+ 0000:0028  Abs  ON_item_tag
+ 0000:0029  Abs  OFF_item_tag
+ 0000:0029  Abs  error_status
+ 0000:002A  Abs  L_item_tag
+ 0000:002B  Abs  T_item_tag
+ 0000:002E  Abs  one_item_tag
+ 0000:002F  Abs  one_point_five_item_tag
+ 0000:0030  Abs  two_item_tag
+ 0000:0035  Abs  five_item_tag
+ 0000:0036  Abs  six_item_tag
+ 0000:0037  Abs  seven_item_tag
+ 0000:0038  Abs  eight_item_tag
+ 0000:003D  Abs  OPEN
+ 0000:003E  Abs  CLOSE
+ 0000:0055  Abs  oneten_item_tag
+ 0000:0056  Abs  onethirtytwo_item_tag
+ 0000:0057  Abs  onefifty_item_tag
+ 0000:0058  Abs  threehundred_item_tag
+ 0000:0058  Abs  keyword
+ 0000:0059  Abs  sixhundred_item_tag
+ 0000:005A  Abs  twelvehundred_item_tag
+ 0000:005B  Abs  twentyfourhundred_item_tag
+ 0000:005C  Abs  fourtyeighthundred_item_tag
+ 0000:005D  Abs  ninetysixhundred_item_tag
+ 0000:005E  Abs  nineteentwohundred_item_tag
+ 0000:0060       move_destination
+ 0000:0061  Abs  FIXUP
+ 0000:007B  Abs  OFFPTS
+ 0000:0080  Abs  busy_status
+ 0000:0081       first_char_in_command_line
+ 0000:0082  Abs  even_item_tag
+ 0000:0083  Abs  odd_item_tag
+ 0000:0084  Abs  REFRESH
+ 0000:0084  Abs  NONE_item_tag
+ 0000:0085  Abs  PREPARE
+ 0000:0085  Abs  space_item_tag
+ 0000:0086  Abs  mark_item_tag
+ 0000:0086  Abs  SELECT
+ 0000:0088  Abs  bogus
+ 0000:008A  Abs  turn_off_reroute
+ 0000:008B  Abs  status_for_everything
+ 0000:008C  Abs  set_con_features
+ 0000:008D  Abs  printer_status
+ 0000:008E  Abs  printer_reroute
+ 0000:008F  Abs  old_video_mode_set
+ 0000:0090  Abs  ready_status
+ 0000:0090  Abs  old_initialize_printer_port
+ 0000:0091  Abs  initialize_printer_port
+ 0000:0092  Abs  initialize_com_port
+ 0000:0093  Abs  com_status
+ 0000:0094  Abs  codepage_selected_status
+ 0000:0095  Abs  codepage_prepared_status
+ 0000:0096  Abs  codepage_status
+ 0000:0097  Abs  codepage_select
+ 0000:0098  Abs  codepage_refresh
+ 0000:0099  Abs  codepage_prepare
+ 0000:009A  Abs  max_request_type
+ 0000:009A  Abs  all_con_status
+ 0000:009B  Abs  LPTX
+ 0000:009C  Abs  COMX
+ 0000:00F9  Abs  P14_model_byte
+ 0000:00FF  Abs  Utility_Msg_Class
+ 0000:0103       MODETO
+ 0000:011C       VECTOR14
+ 0000:0125  Abs  NEW_PTSFLAG
+ 0000:012C  Abs  NEW_SCRNTABL
+ 0000:017D       RES_MODEFLAG
+ 0000:017D       res_com_retry_type
+ 0000:0183       OFFRETRY
+ 0000:0188       VECTOR17
+ 0000:0228       ptsflag1
+ 0000:0229       resflag2
+ 0000:022C       lpt1_retry_type
+ 0000:022F       SCRNTABL
+ 0000:0272       MODELOAD
+ 0000:0311       CTRL_ST
+ 0000:0316       PARM1
+ 0000:0320       PARM2
+ 0000:0321       PARM3
+ 0000:0322       MODE
+ 0000:0323       FLAG
+ 0000:0324       INDEX
+ 0000:0326       IS_LOCAL
+ 0000:0327       LOADED_YET
+ 0000:0328       LOCAL_NAME
+ 0000:0338       machine_type
+ 0000:0339       NOERROR
+ 0000:033A       NEW_VIDEO_PARMS_OFFSET
+ 0000:033C       NEW_VIDEO_PARMS_SEGMENT
+ 0000:033E       REMOTE_DEV
+ 0000:0370       stay_resident
+ 0000:0371       submodel_byte
+ 0000:0381       LPTNO
+ 0000:0382       VERIFY
+ 0000:03AB       MODEECHO
+ 0000:0400  Abs  SERIAL_BASE
+ 0000:0408  Abs  PRINTR
+ 0000:0425       MODEECNO
+ 0000:04EA       display_printer_reroute_status
+ 0000:0530  Abs  RESSEG
+ 0000:0552       MODELENG
+ 0000:059A       get_machine_type
+ 0000:0640       first_sublist
+ 0000:0642       offending_parameter_ptr
+ 0000:064D       illegal_device_ptr
+ 0000:0679       PBAUD_PTR
+ 0000:0684       pparity_ptr
+ 0000:069A       pstop_ptr
+ 0000:06AE       sublist_shift_msg
+ 0000:06DA       sublist_retparto
+ 0000:06E5       sublist_cant_shift
+ 0000:06F2       CPMSGLST2DEV
+ 0000:06FD       CPMSGLST6DEV
+ 0000:0713       CPMSGLST7DEV
+ 0000:071C       sublist_cpmsg8
+ 0000:0732       sublist_cpmsg10
+ 0000:073F       CPMSGLST13CP
+ 0000:074A       CPMSGLST13TYP
+ 0000:0753       sublist_CPMSG17
+ 0000:0760       row_ptr
+ 0000:0765       row_type
+ 0000:076B       COLUMNS_ptr
+ 0000:0770       columns_type
+ 0000:0776       rate_ptr
+ 0000:077B       rate_type
+ 0000:0781       delay_ptr
+ 0000:0786       delay_type
+ 0000:078C       not_supported_ptr
+ 0000:0797       stat_dev_ptr
+ 0000:079D       dev_name_size
+ 0000:07A2       RETRY_type_ptr
+ 0000:07AD       syntax_error_ptr
+ 0000:07B6       PT80N
+ 0000:07B7       PT132N
+ 0000:07B8       device
+ 0000:07B9       pbaud
+ 0000:07BF       pparity
+ 0000:07C0       pdata
+ 0000:07C1       pstop
+ 0000:07C3       pparm
+ 0000:07C4       baud_19200
+ 0000:07CA       REDPT
+ 0000:07CB       REDCOM
+ 0000:07CC       NOTREDPT
+ 0000:07CD       offending_parameter
+ 0000:084F       CPMSGLST6CP
+ 0000:0851       CPMSGLST9CP
+ 0000:0854       Invalid_switch
+ 0000:0878       COM1_or_COM2
+ 0000:0884       MOVED_MSG
+ 0000:0890       ERR1
+ 0000:089C       ERR2
+ 0000:08A8       PT80
+ 0000:08B4       PT132
+ 0000:08C0       PTLINES
+ 0000:08CC       RATEMSG
+ 0000:08D8       INITMSG
+ 0000:08E4       NUMBERS
+ 0000:08F0       SHIFT_MSG
+ 0000:08FC       REDIRMSG
+ 0000:0908       NOTREMSG
+ 0000:0914       RETPARTO
+ 0000:0920       CANT_SHIFT
+ 0000:092C       Invalid_parameter
+ 0000:0938       Invalid_number_of_parameters
+ 0000:0944       net_error
+ 0000:0950       not_supported
+ 0000:095C       CPMSG1
+ 0000:0968       CPMSG2
+ 0000:0974       CPMSG3
+ 0000:0980       CPMSG4
+ 0000:098C       CPMSG5
+ 0000:0998       CPMSG6
+ 0000:09A4       CPMSG7
+ 0000:09B0       CPMSG8
+ 0000:09BC       CPMSG9
+ 0000:09C8       CPMSG10
+ 0000:09D4       CPMSG12
+ 0000:09E0       CPMSG13
+ 0000:09EC       CPMSG14
+ 0000:09F8       CPMSG15
+ 0000:0A04       CPMSG16
+ 0000:0A10       CPMSG17
+ 0000:0A1C       CPMSG18
+ 0000:0A28       CPMSG19
+ 0000:0A34       CPMSG20
+ 0000:0A40       CPMSG21
+ 0000:0A4C       CRLF
+ 0000:0A58       status_for_device
+ 0000:0A64       long_underline
+ 0000:0A70       four_char_underline
+ 0000:0A7C       five_char_underline
+ 0000:0A88       lines_equal_msg
+ 0000:0A94       COLUMNS_equal_msg
+ 0000:0AA0       rate_and_delay_together
+ 0000:0AC4       function_not_supported
+ 0000:0AD0       Required_font_not_loaded
+ 0000:0ADC       ANSI_not_loaded
+ 0000:0AE8       Baud_rate_required
+ 0000:0AF4       RETRY_equal
+ 0000:0B00       syntax_error
+ 0000:0B0C       rightmost
+ 0000:0B18       leftmost
+ 0000:0B24       noretry
+ 0000:0B30       infinite
+ 0000:0B3C       left
+ 0000:0B48       right
+ 0000:0B54       CPMSG8_HW
+ 0000:0B60       cpmsg8_pr
+ 0000:0B6C       cpmsgxx_query
+ 0000:0B78       cpmsgxx_prep
+ 0000:0B84       cpmsgxx_select
+ 0000:0B90       cpmsgxx_refresh
+ 0000:0B9C       cpmsg17_writ
+ 0000:0BA8       cpmsg13_act
+ 0000:0BB4       cpmsg13_sys
+ 0000:0BC2       HANDLE_40_OR_80
+ 0000:0CA0       SHIFT_SCREEN
+ 0000:0DFC       ENDIF03
+ 0000:0EFF       $M_RT
+ 0000:10C2       SYSGETMSG
+ 0000:10DE       $M_GET_MSG_ADDRESS
+ 0000:1206       SYSDISPMSG
+ 0000:1A85       $M_CLS_1
+ 0000:1EE7       $M_CLS_2
+ 0000:1F0C       $M_MSGSERV_1
+ 0000:1F2D       $M_MSGSERV_2
+ 0000:1F37       MAIN
+ 0000:1FCC       BW40
+ 0000:2021       BW80
+ 0000:2076       MONO
+ 0000:20CB       CO40
+ 0000:2120       CO80
+ 0000:219D       GET_VIDEO_INFO
+ 0000:2243       CHECK_BUFF
+ 0000:2260       columns_holder
+ 0000:2265       printer_no
+ 0000:2270       MODEPRIN
+ 0000:22B6       ENDIF04
+ 0000:2307       SEE_IF_REDIRECTED
+ 0000:2396       END_CHECK_NAME
+ 0000:247B       CHK_FOR_P
+ 0000:2483       ELSE01
+ 0000:24A0       modify_resident_code
+ 0000:255B       set_retry_type
+ 0000:2680       baud_index
+ 0000:2682       data_bits_index
+ 0000:2684       parity_index
+ 0000:2686       stop_bits_index
+ 0000:2688       retry_index
+ 0000:268A       setto
+ 0000:2773       setcom
+ 0000:2916       MODECOM
+ 0000:2960       SCRNTAB
+ 0000:29BC       MODECP00
+ 0000:2A01       PK
+ 0000:2A1D       DBCS_headr
+ 0000:2A7C       MODECP
+ 0000:2B35       DO_prepare
+ 0000:2B99       DES_START
+ 0000:2BE0       dummy8
+ 0000:2CD1       dummy10
+ 0000:2D7C       do_status
+ 0000:2E98       DO_GENERIC_IOCTL
+ 0000:2ECE       setup_packet_for_DBCS
+ 0000:2F00       initialize_sublists
+ 0000:2F0F       PRINTF
+ 0000:2F41       TYPAMAT
+ 0000:2F63       cp_cb
+ 0000:2F72       parm_list_holder
+ 0000:2F79       IOCTL0C_data_block
+ 0000:2FA3       DO_IOCTL0C
+ 0000:3085       get_device_retry_type
+ 0000:30F5       analyze_and_invoke
+ 0000:3343       old_initialize_printer_port_cas
+ 0000:338A       initialize_printer_port_case
+ 0000:33E7       old_video_mode_set_case
+ 0000:3473       dummy9
+ 0000:34CB       printer_reroute_case
+ 0000:34EE       printer_status_case
+ 0000:3630       DUMMY3
+ 0000:37E8       SYSPARSE
+ 0000:40C6       des_start_packet
+ 0000:40E5       codepage_index_holder
+ 0000:40EA       device_name
+ 0000:40EC       device_type
+ 0000:40F2       new_com_initialize
+ 0000:40F4       parms_form
+ 0000:40F8       request_type
+ 0000:40F9       reroute_requested
+ 0000:40FA       retry_requested
+ 0000:4242       BAUD_equal
+ 0000:4251       parity_equal
+ 0000:4267       DATA_equal
+ 0000:4276       stop_equal
+ 0000:4285       retry_equal_str
+ 0000:42C3       DEL_equal
+ 0000:42C8       DELAY_equal
+ 0000:42D8       rate_equal
+ 0000:42E7       LINES_equal
+ 0000:42F7       columns_equal
+ 0000:4300       COLS_equal
+ 0000:4591       one_point_five_str
+ 0000:45C2       fourty_str
+ 0000:45CB       eighty_str
+ 0000:45D1       oneten_str
+ 0000:45D9       onefifty_str
+ 0000:45DD       threehundred_str
+ 0000:45E1       sixhundred_str
+ 0000:45E5       twelvehundred_str
+ 0000:45EA       twentyfourhundred_str
+ 0000:45EF       fourtyeighthundred_str
+ 0000:45F4       ninetysixhundred_str
+ 0000:45F9       nineteentwohundred_str
+ 0000:45FF       B_str
+ 0000:4627       COM1_str
+ 0000:462C       COM2_str
+ 0000:4631       COM3_str
+ 0000:4636       COM4_str
+ 0000:463B       CON_str
+ 0000:4642       E_str
+ 0000:464B       LPT1_str
+ 0000:4650       LPT2_str
+ 0000:4655       LPT3_str
+ 0000:4695       none_str
+ 0000:46A0       off_str
+ 0000:46A4       on_str
+ 0000:46AD       R_str
+ 0000:46CD       parm_lst
+ 0000:4791       setup_invalid_parameter
+ 0000:4829       parse_parameters
+ 0000:4899       com_keyword_or_baud_case
+ 0000:492B       com_keyword_case
+ 0000:4A5F       parity_or_null_case
+ 0000:4AAD       databits_or_null_case
+ 0000:4AFB       stopbits_or_null_case
+ 0000:4B43       P_case
+ 0000:4B6A       prn_kw_status_cp_cl_null_case
+ 0000:4D46       li_or_null_case
+ 0000:4EA8       DUMMY1
+ 0000:4FCD       con_kwrd_status_or_cp_case
+ 0000:50B9       con_keyword_case
+ 0000:5148       sd_or_dl_or_eol_case
+ 0000:519E       sd_or_dl_case
+ 0000:52CF       first_parm_case
+ 0000:52E6       dummy5
+ 0000:533C       screen_modes
+ 0000:5758       dummy4
+ 0000:5810       PARSE_PARM
+ 0000:5890       buf
+
+Program entry point at 0000:0100
