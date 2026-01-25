@@ -1,0 +1,19 @@
+#************************** DEV root level Makefile ***********************
+
+make	=nmake
+
+all:
+	cd country
+	$(make)
+	cd ..\keyboard
+	$(make)
+	cd ..\display
+	$(make)
+	cd ..\smartdrv
+	$(make)
+	cd ..\driver
+	$(make)
+	cd ..
+
+
+
