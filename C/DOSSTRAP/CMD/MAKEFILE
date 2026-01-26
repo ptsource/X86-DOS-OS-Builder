@@ -22,6 +22,9 @@ all:
 	cd ..\compress
 	del *.exe
 	$(make)
+	cd ..\cwsdpmi
+	del *.exe
+	$(make)
 	cd ..\debug
 	$(make)
 	cd ..\deldupe
