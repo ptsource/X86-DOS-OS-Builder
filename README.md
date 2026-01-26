@@ -12,8 +12,8 @@ PTSource X86 DOS OS Builder is a flexible system creation toolkit designed to he
 <img src="https://raw.githubusercontent.com/ptsource/X86-DOS-OS-Builder/master/images/01.PNG" width="33%"><img src="https://raw.githubusercontent.com/ptsource/X86-DOS-OS-Builder/master/images/02.PNG" width="33%"><img src="https://raw.githubusercontent.com/ptsource/X86-DOS-OS-Builder/master/images/03.PNG" width="33%">
 <img src="https://raw.githubusercontent.com/ptsource/X86-DOS-OS-Builder/master/images/04.PNG" width="33%"><img src="https://raw.githubusercontent.com/ptsource/X86-DOS-OS-Builder/master/images/05.PNG" width="33%"><img src="https://raw.githubusercontent.com/ptsource/X86-DOS-OS-Builder/master/images/06.PNG" width="33%">
 
-### Note
-PTSource X86 DOS OS Builder uses the Microsoft DOS open-source codebase wich is based on MS-DOS 4.0, although some fixes to this code were applied PTSource X86 DOS OS Builder is ment to be used for minimal systems or tailored bootdisks. If you want a  multitasking, multiuser professional operating DOS system 100% compatible with MS-DOS, PC-DOS, DR-DOS and with Windows 3.11 enhanced mode support you should consider our [PTSource MiniVMDOS](https://store.ptsource.eu/soft/mvmdos/) 
+### Important Note
+PTSource X86 DOS OS Builder uses the Microsoft DOS open-source codebase wich is based on MS-DOS 4.0, although some fixes to this code were applied PTSource X86 DOS OS Builder is ment to be used for minimal systems or tailored bootdisks. If you want a multitasking, multiuser professional operating DOS system 100% compatible with MS-DOS, PC-DOS, DR-DOS and with Windows 3.11 enhanced mode support you should consider our [PTSource MiniVMDOS](https://store.ptsource.eu/soft/mvmdos/) 
 
 ## Building
 
