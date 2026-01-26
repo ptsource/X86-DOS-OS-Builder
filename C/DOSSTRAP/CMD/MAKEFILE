@@ -112,5 +112,8 @@ all:
 	cd ..\xcopy
 	del *.com
 	$(make)
+	cd ..\xdir
+	del *.com
+	$(make)
 	cd ..
 
