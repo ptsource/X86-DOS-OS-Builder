@@ -21,7 +21,7 @@ void main(int argc, char *argv[]) {
         unsigned int blk_len;
     } far *envmcb;
     if (argc < 2) {
-        fprintf(stderr, "Usage: mp [ -{p|a} newnodename | -r oldnodename newnodename]*\n");
+        fprintf(stderr, "Usage: MP [ -{p|a} newnodename | -r oldnodename newnodename]*\n");
         exit(1);
     }
     p_psp = MK_FP(_psp,0x16);    /*pointer to parent's PSP*/
