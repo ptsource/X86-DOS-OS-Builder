@@ -14,6 +14,7 @@ PTSource X86 DOS OS Builder is a flexible system creation toolkit designed to he
 ## Features 
 
 * Full source code under MIT license
+* More than 50 standard DOS commands
 * Added system applications
 * Complete set of building tools
 
