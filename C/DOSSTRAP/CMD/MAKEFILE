@@ -45,6 +45,9 @@ all:
 	$(make)
 	cd ..\more
 	$(make)
+	cd ..\mp
+	del *.exe
+	$(make)
 	cd ..\print
 	$(make)
 	cd ..\recover
