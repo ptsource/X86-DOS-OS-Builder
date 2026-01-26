@@ -1,0 +1,21 @@
+#************************** makefile for cmd\... ***************************
+
+dos	=..\..\dos
+inc	=..\..\inc
+hinc	=..\..\h
+
+#
+#######################	dependencies begin here. #########################
+#
+
+all: xdir.com
+
+
+xdir.obj: xdir.asm
+          masm xdir;
+
+xdir.com: xdir.obj
+	link xdir;
+	exe2bin xdir.exe XDIR.COM
+	del xdir.exe
+	del *.obj
