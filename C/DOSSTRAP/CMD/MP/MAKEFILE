@@ -1,0 +1,17 @@
+#************************** makefile for cmd\... ***************************
+
+dos	=..\..\dos
+inc	=..\..\inc
+hinc	=..\..\h
+
+#
+#######################	dependencies begin here. #########################
+#
+
+all: mp.exe
+
+
+mp.exe: mp.c
+         tcc mp.c
+         upx --8086 MP.EXE
+         del *.obj
