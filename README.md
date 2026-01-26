@@ -19,11 +19,25 @@ PTSource X86 DOS OS Builder uses the Microsoft DOS open-source codebase wich is 
 
 PTSource X86 DOS OS Builder builds in any DOS environment, even in DOSBox. A DOSBox portable distribution is provided for that effect.
 
-## Instructions
-
+## Build Instructions
+### Windows
 * Download this repository.
 * Extract the contents of the repository.
-* Start X86 DOS OS Builder
+* Start X86 DOS OS Builder.
+* Run BUILD and wait.
+* A complete distribution will be avaliable in the DISTRO folder.
+
+### Linux
+* Download this repository.
+* Extract the contents of the repository.
+* Copy the folder C->DOSSTRAP to the C Drive of you DOS emulator.
+* Run BUILD and wait.
+* A complete distribution will be avaliable in the DISTRO folder.
+
+### Real DOS Machine
+* Download this repository.
+* Extract the contents of the repository.
+* Copy the folder C->DOSSTRAP to the C Drive.
 * Run BUILD and wait.
 * A complete distribution will be avaliable in the DISTRO folder.
 
