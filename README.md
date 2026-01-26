@@ -4,7 +4,7 @@ The purpose of the PTSource X86 DOS OS Builder is to preserve and study the Micr
 
 #  PTSource X86 DOS OS Builder
 ### Current version 7.0 (2026)
-#### [![ko-fi](/images/ko-fi.png)](https://ko-fi.com/ptsource) For updates and change logs.
+#### [![ko-fi](/images/ko-fi.png)](https://ko-fi.com/ptsource) For updates, change logs or to buy us a coffee.
 
 PTSource X86 DOS OS Builder is a flexible system creation toolkit designed to help you build minimal custom DOS-compatible operating systems for x86 hardware, based on the Microsoft DOS open-source codebase. It allows developers, educators, and retro-computing enthusiasts to assemble tailored DOS systems by selecting, configuring, and integrating core OS components, device drivers, and utilities. The builder supports customization of the kernel, command interpreter, memory managers, and startup configuration, making it possible to create minimal DOS systems. With a focus on clarity, modularity, and compatibility, the PTSource X86 DOS OS Builder is ideal for experimentation, learning operating system internals, preserving legacy software, and developing specialized DOS distributions for real hardware, emulators, or virtual machines.
 
