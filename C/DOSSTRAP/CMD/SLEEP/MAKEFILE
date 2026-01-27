@@ -1,0 +1,16 @@
+#************************** makefile for cmd\... ***************************
+
+dos	=..\..\dos
+inc	=..\..\inc
+hinc	=..\..\h
+
+#
+#######################	dependencies begin here. #########################
+#
+
+all: sleep.exe
+
+
+sleep.exe: sleep.pas
+         tpc sleep.pas
+         upx --8086 SLEEP.EXE
