@@ -1,0 +1,20 @@
+#************************** makefile for cmd\... ***************************
+
+msg	=..\..\messages
+dos	=..\..\dos
+inc	=..\..\inc
+hinc	=..\..\h
+
+#
+#######################	dependencies begin here. #########################
+#
+
+all: free.exe
+
+
+free.obj: free.asm
+          masm free;
+
+free.exe: free.obj
+	link free;
+	del *.obj
