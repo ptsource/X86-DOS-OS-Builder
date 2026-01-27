@@ -55,6 +55,9 @@ all:
 	$(make)
 	cd ..\recover
 	$(make)
+	cd ..\sleep
+	del *.exe
+	$(make)
 	cd ..\sort
 	$(make)
 	cd ..\subst
