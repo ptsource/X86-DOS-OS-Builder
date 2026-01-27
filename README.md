@@ -57,7 +57,7 @@ A Boot Image is provided in the repository BOOT.IMG, this image contains the com
 
 ## Applications
 
-PTSource X86 DOS OS Builder uses the Microsoft DOS open-source codebase wich is based on MS-DOS 4.0 despite that almost all not too complex DOS applications will run with no hassle, its up to you to make a test and see. Applications can be added to the image using the above method. If you want a Norton Commander style shell occupying just 13KB of memory (the one used on the preview) you can get [Wee Commander here](https://ko-fi.com/s/8df79a705d).
+PTSource X86 DOS OS Builder uses the Microsoft DOS open-source codebase wich is based on MS-DOS 4.0, despite that almost all not too complex DOS applications will run with no hassle, its up to you to make a test and see. Applications can be added to the image using the above method. If you want a Norton Commander style shell occupying just 13KB of memory (the one used on the preview) you can get [Wee Commander here](https://ko-fi.com/s/8df79a705d).
 
 ## MiniVM Booting
 
