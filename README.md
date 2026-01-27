@@ -17,6 +17,7 @@ PTSource X86 DOS OS Builder is a flexible system creation toolkit designed to he
 * More than 50 standard DOS commands
 * Added system applications
 * Complete set of building tools
+* BOOT Image included
 
 ## Important Note
 PTSource X86 DOS OS Builder uses the Microsoft DOS open-source codebase wich is based on MS-DOS 4.0, although some fixes to this code were applied, PTSource X86 DOS OS Builder is ment to be used for minimal systems or tailored minimal bootdisks. If you want a multitasking, multiuser professional operating DOS system 100% compatible with MS-DOS, PC-DOS, DR-DOS and with Windows 3.11 enhanced mode support you should consider using [PTSource MiniVMDOS](https://store.ptsource.eu/soft/mvmdos/) 
