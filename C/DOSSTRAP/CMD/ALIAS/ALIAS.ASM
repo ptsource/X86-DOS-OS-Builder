@@ -14,7 +14,6 @@
 NAVN    EQU     "ALIAS"
 NAVNLEN EQU     5
 VER     EQU     "v1.0"
-DATO    EQU     "2026"
 DSIZE   EQU     1024
 INTNR   EQU     21h
 IDFUNK  EQU     0FFh
