@@ -7,4 +7,5 @@ PATH=\BIN;\
 KEYB PO
 RECALL -i > NUL
 CLS
+XDIR
 
