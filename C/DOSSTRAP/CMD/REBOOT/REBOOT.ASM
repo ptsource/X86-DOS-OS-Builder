@@ -289,7 +289,7 @@ cold_flag	db	0		; cold boot flag
 reboot$		db	"REBOOT="	; reboot string
 len_reboot$	equ	$ - reboot$	; length of reboot string
 
-def_name	db	"c:\clean",0,0	; default asciiz filename
+def_name	db	"\clean",0,0	; default asciiz filename
 filespec	db	80 dup (0)	; asciiz filespec
 
 err_msg_1	db	"REBOOT: Usage: REBOOT [/fc] [file ...]",cr,lf,"$"
