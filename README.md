@@ -82,8 +82,10 @@ This example use case allows you to have a CP/M-80 System using only ALIAS, [ZRU
 PTSource X86 DOS OS Builder can be used to build a full toolchain for the [LiberDOS Project](https://github.com/libersoft-org/liberdos). To do that you just have to edit the [LiberDOS Project](https://github.com/libersoft-org/liberdos) image and insert the files under DISTRO\BIN in the image. After you should have a complete toolchain for the [LiberDOS Project](https://github.com/libersoft-org/liberdos).
 
 ## Homepage
+[![Visit homepage.](/images/homepage-here-yellowgreen.svg)](https://wiki.ptsource.eu/soft/x86dososbuilder/start) 
 
-[![Visit homepage.](/images/homepage-here-yellowgreen.svg)](https://wiki.ptsource.eu/soft/x86dososbuilder/start)
+## Facebook Group
+[![Join Facebook Group.](/images/facebook-group-icon.png)](https://www.facebook.com/groups/retrosoftware))
 
 <p align="center" width="100%">
     <a href="https://store.ptsource.eu/soft/x86dososbuilder/start" target="_blank"><img src="/images/bannerx86dosbuilder.png" alt="PTSource X86 DOS OS Builder"></a> 
