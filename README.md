@@ -83,7 +83,7 @@ PTSource X86 DOS OS Builder can be used to build a full toolchain for the [Liber
 
 ## Homepage & Group
 [![Visit homepage.](/images/homepage-here-yellowgreen.svg)](https://wiki.ptsource.eu/soft/x86dososbuilder/start) 
-[![Visit group.](/images/facebook.svg)](https://www.facebook.com/groups/retrosoftware) 
+[![Visit group.](/images/facebook.svg)](https://www.facebook.com/groups/retrosoft) 
 
 
 <p align="center" width="100%">
